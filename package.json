@@ -6,5 +6,20 @@
   "repository": "https://github.com/ragu-framework/ragu-cli.git",
   "author": "Maniero <carlosmaniero@gmail.com>",
   "license": "MIT",
-  "private": false
+  "private": false,
+  "scripts": {
+    "dev": "ts-node src/entrypoint.ts"
+  },
+  "devDependencies": {
+    "ragu-react-server-adapter": "^0.0.12",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.5"
+  },
+  "dependencies": {
+    "commander": "^7.1.0",
+    "ragu-server": "^0.0.52"
+  },
+  "bin": {
+    "ragu-cli": "./src/entrypoint.js"
+  }
 }
