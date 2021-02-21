@@ -2,13 +2,13 @@
   "name": "ragu-cli",
   "version": "0.0.2",
   "description": "A command line helper for ragu framework",
-  "main": "index.js",
+  "main": "entrypoint.js",
   "repository": "https://github.com/ragu-framework/ragu-cli.git",
   "author": "Maniero <carlosmaniero@gmail.com>",
   "license": "MIT",
   "private": false,
   "scripts": {
-    "dev": "ts-node src/entrypoint.ts",
+    "dev": "ts-node entrypoint.ts",
     "build": "yarn tsc && cp package.json dist && cp README.md dist"
   },
   "devDependencies": {

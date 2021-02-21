@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 import {Command} from 'commander';
-import {detectFramework, SupportedFrameworks} from "./detect-framework";
+import {detectFramework, SupportedFrameworks} from "./src/detect-framework";
 import {ConsoleLogger} from "ragu-server";
-const packageJson = require('../package.json');
+const packageJson = require('./package.json');
 
 const program = new Command();
 
@@ -51,7 +51,7 @@ const getCommand = (commandName: string, options: Options) => {
   if (framework) {
     log.info(`Running command using ${framework} adapter`);
 
-    const {default: command} = require(`./tasks/${framework}/${commandName}`);
+    const {default: command} = require(`./src/tasks/${framework}/${commandName}`);
 
     return command;
   }
