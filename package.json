@@ -21,6 +21,6 @@
     "ragu-server": "^0.0.52"
   },
   "bin": {
-    "ragu-cli": "./src/entrypoint.js"
+    "ragu-cli": "./entrypoint.js"
   }
 }
