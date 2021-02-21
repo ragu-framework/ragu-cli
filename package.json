@@ -1,6 +1,6 @@
 {
   "name": "ragu-cli",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A command line helper for ragu framework",
   "main": "index.js",
   "repository": "https://github.com/ragu-framework/ragu-cli.git",
