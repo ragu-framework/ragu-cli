@@ -42,6 +42,7 @@ const setDefaultOptions = (program: Command | any): Command => {
   return program
       .option('-a, --adapter <adapter>', 'The framework adapter: react, vue')
       .option('--ssr', 'activate the Server Side Rendering Mode')
+      .option('--dependencies <dependencies>', 'A json file with all dependencies')
       .option('--output', 'Output directory default: .ragu-components')
       .option('-h, --host <host>', 'base host name', 'http://localhost:3100')
       .option('-c, --configFile <configFile>', 'A custom config file')

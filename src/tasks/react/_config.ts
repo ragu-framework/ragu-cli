@@ -1,5 +1,5 @@
 import {createReactRaguServerConfig} from "ragu-react-server-adapter/config";
-import {ConsoleLogger, RaguServerBaseConfigProps} from "ragu-server";
+import {ConsoleLogger, Dependency, RaguServerBaseConfigProps} from "ragu-server";
 import {getAbsolutePath} from "../../path_extension";
 
 export type SingleComponentBuildStrategy = {
@@ -19,6 +19,7 @@ export type Args = {
   configFile?: string;
   host?: string;
   output?: string;
+  dependencies?: string;
   ssrEnabled: boolean
 } & BuildStrategy
 
@@ -31,6 +32,17 @@ const getConfig = (args: Args) => {
   }
 
   let extraConfig: RaguServerBaseConfigProps = {}
+
+  if (args.dependencies) {
+    const dependencies: Dependency[] = require(getAbsolutePath(args.dependencies))
+
+    extraConfig = {
+      ...extraConfig,
+      components: {
+        defaultDependencies: dependencies
+      }
+    }
+  }
 
   if (args.output) {
     extraConfig = {
