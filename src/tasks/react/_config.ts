@@ -44,7 +44,15 @@ const getConfig = (args: Args) => {
   }
 
   if (args.host) {
-    extraConfig = {...extraConfig, baseurl: args.host}
+    extraConfig = {
+      ...extraConfig,
+      baseurl: args.host,
+      server: {
+        routes: {
+          assets: '/compiled/client-side/'
+        }
+      }
+    }
   }
 
   return createReactRaguServerConfig(extraConfig);
