@@ -1,5 +1,5 @@
 import {createReactRaguServerConfig} from "ragu-react-server-adapter/config";
-import {ConsoleLogger} from "ragu-server";
+import {ConsoleLogger, RaguServerBaseConfigProps} from "ragu-server";
 import {getAbsolutePath} from "../../path_extension";
 
 export type SingleComponentBuildStrategy = {
@@ -17,6 +17,8 @@ type BuildStrategy = SingleComponentBuildStrategy | DirectoryComponentBuildStrat
 
 export type Args = {
   configFile?: string;
+  host?: string;
+  output?: string;
   ssrEnabled: boolean
 } & BuildStrategy
 
@@ -28,10 +30,27 @@ const getConfig = (args: Args) => {
     return require(getAbsolutePath(args.configFile));
   }
 
-  return createReactRaguServerConfig();
+  let extraConfig: RaguServerBaseConfigProps = {}
+
+  if (args.output) {
+    extraConfig = {
+      ...extraConfig,
+      compiler: {
+        output: {
+          directory: args.output
+        }
+      }
+    }
+  }
+
+  if (args.host) {
+    extraConfig = {...extraConfig, baseurl: args.host}
+  }
+
+  return createReactRaguServerConfig(extraConfig);
 }
 
-function createConfig(args: Args) {
+export const createConfig = (args: Args) => {
   const config = getConfig(args);
 
   config.ssrEnabled = args.ssrEnabled;

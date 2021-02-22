@@ -12,13 +12,13 @@
     "build": "yarn tsc && cp package.json dist && cp README.md dist"
   },
   "devDependencies": {
-    "ragu-react-server-adapter": "^0.0.12",
+    "ragu-react-server-adapter": "^0.0.13",
     "ts-node": "^9.1.1",
     "typescript": "^4.1.5"
   },
   "dependencies": {
     "commander": "^7.1.0",
-    "ragu-server": "^0.0.52"
+    "ragu-server": "^0.0.53"
   },
   "bin": {
     "ragu-cli": "./entrypoint.js"

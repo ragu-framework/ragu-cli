@@ -3540,10 +3540,10 @@ ragu-dom@^0.0.51:
   resolved "https://registry.yarnpkg.com/ragu-dom/-/ragu-dom-0.0.51.tgz#0c936636c255ae68df7b4ce4b678b30053ab7b0f"
   integrity sha512-MGEZL70Va/QW1xEcX63EwItbJipAvUr6PfLmj8FbMCDtUa6s548KOoROLezBG0xFme8vNRm/sniBLv0OwElsew==
 
-ragu-react-server-adapter@^0.0.12:
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/ragu-react-server-adapter/-/ragu-react-server-adapter-0.0.12.tgz#12656727bc2c0a3de4a00103eb0b5dadcae4c7ac"
-  integrity sha512-TYomL2bd+s8mLzZko0elOJTms5uuvgYVeNRqi6Ko7yMZWam85bMeWY1oFR+kjLh0RoKWi+zbmUfJzrGBIPQpkA==
+ragu-react-server-adapter@^0.0.13:
+  version "0.0.13"
+  resolved "https://registry.yarnpkg.com/ragu-react-server-adapter/-/ragu-react-server-adapter-0.0.13.tgz#4ed7232784ce83ed27d389e4b73f5158e6d60c70"
+  integrity sha512-NYcHyPzrFlAGkX7Zf7tJ0P4io2lmyC4S9e0sVfrNs1+dXYRD2A+vo4JalicoX4QL5yHGQvYpWXEYzfZXTNADMA==
   dependencies:
     "@babel/plugin-transform-modules-commonjs" "^7.10.4"
     "@babel/plugin-transform-runtime" "^7.11.5"
@@ -3556,7 +3556,6 @@ ragu-react-server-adapter@^0.0.12:
     file-loader "^6.1.1"
     get-port "^5.1.1"
     mini-css-extract-plugin "^1.0.0"
-    ragu-server "0.0.52"
     react "^16.13.1"
     react-dom "^16.13.1"
     ts-loader "^8.0.4"
@@ -3564,10 +3563,10 @@ ragu-react-server-adapter@^0.0.12:
     webpack-merge "^5.2.0"
     webpack-node-externals "^2.5.2"
 
-ragu-server@0.0.52, ragu-server@^0.0.52:
-  version "0.0.52"
-  resolved "https://registry.yarnpkg.com/ragu-server/-/ragu-server-0.0.52.tgz#3846648be95a487d54685a87e919704eb5b9acbb"
-  integrity sha512-vXhPl3cBfYGSN1Tm5uRN7JZP3EOXZkhpruo2VvIzhxWDT/YM8081EJBvvfgEOuBsQQ38MDN2KrgJMvnnN776dw==
+ragu-server@^0.0.53:
+  version "0.0.53"
+  resolved "https://registry.yarnpkg.com/ragu-server/-/ragu-server-0.0.53.tgz#1a9a530dfb6069227c8055f356145368fc6a0eba"
+  integrity sha512-GhFp/H/bkEthPjbN+vU6c/xk8hoyeDrNpIP1NesxXXyGdvJsyn8iCZuf3143M4yyyKx2irUrCPA4oIs5XY7QBw==
   dependencies:
     "@types/webpack-node-externals" "^2.5.0"
     abort-controller "^3.0.0"

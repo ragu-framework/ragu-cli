@@ -42,6 +42,8 @@ const setDefaultOptions = (program: Command | any): Command => {
   return program
       .option('-a, --adapter <adapter>', 'The framework adapter: react, vue')
       .option('--ssr', 'activate the Server Side Rendering Mode')
+      .option('--output', 'Output directory default: .ragu-components')
+      .option('-h, --host <host>', 'base host name', 'http://localhost:3100')
       .option('-c, --configFile <configFile>', 'A custom config file')
       .option('-d, --debug', 'output extra debugging', false);
 }
@@ -90,8 +92,45 @@ setDefaultOptions(program
 
         command({
           ...options,
-          strategy: 'single',
           componentsDirectory,
+          ssrEnabled: options.ssr
+        });
+      }
+    });
+
+
+setDefaultOptions(program
+    .command('build:static <componentFile>')
+    .description('Build a ragu component using the static method.'))
+    .action((componentFile, options: Options) => {
+      if (options.debug) {
+        console.log({...options, componentFile});
+      }
+      const command = getCommand('static', options);
+
+      if (command) {
+        command({
+          ...options,
+          fileName: componentFile,
+          ssrEnabled: options.ssr
+        });
+      }
+    });
+
+
+setDefaultOptions(program
+    .command('build:static:directory <componentFile>')
+    .description('Build a ragu component using the static method.'))
+    .action((componentFile, options: Options) => {
+      if (options.debug) {
+        console.log({...options, componentFile});
+      }
+      const command = getCommand('static_multi', options);
+
+      if (command) {
+        command({
+          ...options,
+          fileName: componentFile,
           ssrEnabled: options.ssr
         });
       }
