@@ -45,7 +45,7 @@ const App = ()  => {
     <Card
       step={3}
       visible={value >= 3}
-      title="Using a micro-frontend is like use an iframe"
+      title="Using a micro-frontend is like using an iframe"
       description="Properties are passed to micro-frontends as query parameters. It reduces the encapsulation between micro-frontends.">
       <Codeblock>
         {'<ragu-framework'}<br />
