@@ -18,7 +18,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "build:mfe": "SC_ATTR=true ragu-cli build:static mfe.jsx -h https://ragu-framework.github.io/ragu-cli/ --dependencies dependencies.json"
+    "build:mfe": "SC_ATTR=true ragu-cli build:static mfe.jsx -h https://ragu-framework.github.io/ragu-cli --dependencies dependencies.json"
   },
   "eslintConfig": {
     "extends": [
