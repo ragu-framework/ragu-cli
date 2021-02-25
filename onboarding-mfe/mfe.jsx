@@ -6,7 +6,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     padding: 0;
     margin: 0;
-    background: linear-gradient(122deg, rgba(191,38,94,1) 0%, rgba(255,171,64,1) 100%);
+    background: linear-gradient(122deg, rgba(191,38,94,1) 0%, rgb(255,171,64) 100%);
     background-repeat: no-repeat;
     background-attachment: fixed;
   }

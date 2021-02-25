@@ -29,7 +29,7 @@ const rightToLeftAnimation = (width = 60) => keyframes`
 
 const showContentAnimation = keyframes`
   0% { opacity:0; }
-  25% { opacity:0; }
+  33% { opacity:0; }
   100% { opacity:1; }
 `;
 
@@ -77,10 +77,10 @@ const CardWrapper = styled.section`
   overflow: hidden;
 
   &.visible {
-    animation: 0.75s ease 0s normal forwards 1 ${(props) => props.direction === 'left' ? leftToRightAnimation() : rightToLeftAnimation()};
+    animation: 1s ease 0s normal forwards 1 ${(props) => props.direction === 'left' ? leftToRightAnimation() : rightToLeftAnimation()};
     
     @media (max-width: 1024px) {
-      animation: 0.75s ease 0s normal forwards 1 ${(props) => props.direction === 'left' ? leftToRightAnimation(90) : rightToLeftAnimation(90)};
+      animation: 1s ease 0s normal forwards 1 ${(props) => props.direction === 'left' ? leftToRightAnimation(90) : rightToLeftAnimation(90)};
 
       > * {
         max-width: 100%;
@@ -94,7 +94,7 @@ const CardWrapper = styled.section`
   > * {
     max-width: 80%;
     opacity: 0;
-    animation: 1.5s ease 0s normal forwards 1 ${showContentAnimation};
+    animation: 2s ease 0s normal forwards 1 ${showContentAnimation};
   }
 `;
 

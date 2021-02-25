@@ -8,7 +8,7 @@ const App = ()  => {
   const [value, setValue] = useState(1);
 
   useEffect(() => {
-    value !== 3 && setTimeout(() => setValue(value + 1), 300);
+    value !== 3 && setTimeout(() => setValue(value + 1), 400);
   }, [value]);
 
   return <CardGrid>
@@ -19,10 +19,12 @@ const App = ()  => {
       description="Instead of complex configurations you can just export your micro-frontend with “ragu-cli”."
     >
       <Codeblock>
-        $ npx ragu-cli run my-component-name.js<br /><br />
+        <strong className="accent">$ </strong>
+        <span className="secondary">npx ragu-cli run </span>
+        <span className="third">./my-component-name.js</span><br /><br />
 
-        Welcome to 🔪 RaguServer<br />
-        The application is running at http://localhost:3100
+        <strong>Welcome to 🔪 RaguServer</strong><br />
+        The application is running at <span className="link">http://localhost:3100</span>
       </Codeblock>
     </Card>
     <Card
@@ -33,10 +35,12 @@ const App = ()  => {
       description="You can just export a function that renders your component and you have a micro-frontend!"
     >
       <Codeblock>
-        # my-hello-micro-frontend.jsx<br /><br />
+        <span className="comment"># my-hello-micro-frontend.jsx</span><br /><br />
 
-        export default (props) =><br />
-        &nbsp;&nbsp;{"<Hello name={props.name} />;"}
+        <span className="accent">export default</span> (props) =><br />
+        &nbsp;&nbsp;
+        <span className="secondary">{'<'}Hello</span> <span className="third">name=</span>{"{props.name}"}
+        <span className="secondary">{'/>'}</span>;
       </Codeblock>
     </Card>
     <Card
@@ -45,8 +49,9 @@ const App = ()  => {
       title="Using a micro-frontend is like using an iframe"
       description="Properties are passed to micro-frontends as query parameters. It reduces the encapsulation between micro-frontends.">
       <Codeblock>
-        {'<ragu-framework'}<br />
-        &nbsp;&nbsp;{'src="http://my-micro-frontend-host/my-microfrontend?name=World" />'}
+        <span className="secondary">{'<ragu-framework'}<br /></span>
+        &nbsp;&nbsp;src<span className='third'>="http://my-micro-frontend-host/my-microfrontend?name=World"</span>
+        <span className="secondary">{'/>'}</span>
       </Codeblock>
     </Card>
   </CardGrid>;
