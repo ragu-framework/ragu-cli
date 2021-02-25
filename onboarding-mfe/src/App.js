@@ -8,10 +8,7 @@ const App = ()  => {
   const [value, setValue] = useState(1);
 
   useEffect(() => {
-    if (value !== 3) {
-      console.log('schedu', value)
-      setTimeout(() => setValue(value + 1), 150);
-    }
+    value !== 3 && setTimeout(() => setValue(value + 1), 300);
   }, [value]);
 
   return <CardGrid>
