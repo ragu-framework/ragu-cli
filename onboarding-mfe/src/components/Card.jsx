@@ -3,11 +3,13 @@ import React from "react";
 
 const leftToRightAnimation = (width = 60) => keyframes`
   from {
-    width: 0;
     opacity: 1;
+    width: ${width}%;
+    margin-left: -${width}%;;
   }
 
   to {
+    margin-left: 0;
     opacity: 1;
     width: ${width}%;
   }
@@ -16,12 +18,14 @@ const leftToRightAnimation = (width = 60) => keyframes`
 const rightToLeftAnimation = (width = 60) => keyframes`
   from {
     opacity: 1;
-    width: 0;
     margin-left: 100%;
+    margin-right: -${width}%;
+    width: ${width}%;
   }
 
   to {
     opacity: 1;
+    margin-right: 0;
     margin-left: ${100 - width}%;
     width: ${width}%;
   }
