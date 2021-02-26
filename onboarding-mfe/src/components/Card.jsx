@@ -5,11 +5,11 @@ const leftToRightAnimation = (width = 60) => keyframes`
   from {
     opacity: 1;
     width: ${width}%;
-    margin-left: -${width}%;;
+    transform: translateX(-100%);
   }
 
   to {
-    margin-left: 0;
+    transform: translateX(0);
     opacity: 1;
     width: ${width}%;
   }
@@ -18,15 +18,13 @@ const leftToRightAnimation = (width = 60) => keyframes`
 const rightToLeftAnimation = (width = 60) => keyframes`
   from {
     opacity: 1;
-    margin-left: 100%;
-    margin-right: -${width}%;
+    transform: translateX(100%);
     width: ${width}%;
   }
 
   to {
     opacity: 1;
-    margin-right: 0;
-    margin-left: ${100 - width}%;
+    transform: translateX(0);
     width: ${width}%;
   }
 `;
