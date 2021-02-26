@@ -82,6 +82,7 @@ const CardWrapper = styled.section`
     animation: 1s ease 0s normal forwards 1 ${(props) => props.direction === 'left' ? leftToRightAnimation() : rightToLeftAnimation()};
     
     @media (max-width: 1024px) {
+      margin-left: ${(props) => props.direction === 'left' ? '0' : '10%'};
       animation: 1s ease 0s normal forwards 1 ${(props) => props.direction === 'left' ? leftToRightAnimation(90) : rightToLeftAnimation(90)};
 
       > * {
@@ -89,6 +90,7 @@ const CardWrapper = styled.section`
       }
     }  
   }
+
   margin-left: ${(props) => props.direction === 'left' ? '0' : '40%'};
   border-radius: ${(props) => props.direction === 'left' ? '0 200px 200px 0' : '200px 0 0 200px'};
   flex-direction: ${(props) => props.direction === 'left' ? 'row-reverse' : 'row'};
