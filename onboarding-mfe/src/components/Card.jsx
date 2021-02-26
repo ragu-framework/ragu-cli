@@ -144,4 +144,6 @@ export const Card = ({step, title, image, children, description, visible}) => <C
 export const CardGrid = styled.div`
   display: grid;
   grid-gap: 4rem;
+  width: 100%;
+  overflow-x: hidden;
 `
