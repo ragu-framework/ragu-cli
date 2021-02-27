@@ -1,12 +1,7 @@
 import {injectable} from "tsyringe";
 import {ConsoleLogger} from "ragu-server";
 import {DetectInstallation} from "./detect-installation";
-
-export enum AvailableAdapters {
-  react = 'react',
-  vue = 'vue',
-  custom = 'custom'
-}
+import {AvailableAdapters} from "./available-adapters";
 
 export class AdapterNotInstallerError extends Error {
   constructor(public readonly adapter: AvailableAdapters) {
@@ -15,7 +10,7 @@ export class AdapterNotInstallerError extends Error {
 }
 
 @injectable()
-export class AdaptorDetector {
+export class AdapterDetector {
   private readonly adapterList = [
     {
       framework: AvailableAdapters.react,
