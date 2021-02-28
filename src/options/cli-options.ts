@@ -1,6 +1,7 @@
 import {LogLevel} from "ragu-server";
 import {AvailableAdapters} from "../adapters/available-adapters";
 import {injectable} from "tsyringe";
+import * as path from "path";
 
 export enum ResolverKind {
   file = 'file',
@@ -81,14 +82,25 @@ export class CliOptionsParser {
     const resolutionMode = CliOptionsParser.parseResolutionMode(input);
 
     return {
-      configFile: input.configFile,
-      baseurl: input.baseurl,
-      dependencies: input.dependencies,
+      configFile: CliOptionsParser.parseUserProvidedPath(input.configFile),
+      baseurl: CliOptionsParser.parseUserProvidedPath(input.baseurl),
+      dependencies: CliOptionsParser.parseUserProvidedPath(input.dependencies),
       port: CliOptionsParser.parsePort(input),
       ssrEnabled: CliOptionsParser.parseSsrEnabled(input),
       logLevel: CliOptionsParser.parseLogLevel(input),
       ...resolutionMode
     }
+  }
+
+
+  private static parseUserProvidedPath(providedPath: string): string;
+  private static parseUserProvidedPath(providedPath?: string): undefined;
+  private static parseUserProvidedPath(providedPath: string | undefined): string | undefined {
+    if (providedPath === undefined) {
+      return;
+    }
+
+    return path.resolve(process.cwd(), providedPath);
   }
 
   private static parsePort(input: CliInput): number | undefined {
@@ -166,9 +178,9 @@ export class CliOptionsParser {
   private static parseResolver(input: CliInput): ResolveOption {
     if (input.file) {
       return {
-        path: input.file,
+        path: CliOptionsParser.parseUserProvidedPath(input.file),
         kind: ResolverKind.file,
-        statePath: input.statePath
+        statePath: CliOptionsParser.parseUserProvidedPath(input.statePath)
       }
     }
 
@@ -178,7 +190,7 @@ export class CliOptionsParser {
       }
 
       return {
-        path: input.directory,
+        path: CliOptionsParser.parseUserProvidedPath(input.directory),
         kind: ResolverKind.directory
       }
     }

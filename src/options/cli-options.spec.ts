@@ -4,10 +4,12 @@ import {
   InvalidOption,
   NoComponentResolveSpecifiedError,
   RequiredConfigFileForCustomAdapterError,
-  ResolverKind, StateCannotBeSetWhenUsingDirectoryResolverError
+  ResolverKind,
+  StateCannotBeSetWhenUsingDirectoryResolverError
 } from "./cli-options";
 import {LogLevel} from "ragu-server";
 import {AvailableAdapters} from "../adapters/available-adapters";
+import * as path from "path";
 
 describe('CliOptionsParser', () => {
   let parser: CliOptionsParser;
@@ -26,7 +28,7 @@ describe('CliOptionsParser', () => {
       ).toEqual({
         resolve: {
           kind: ResolverKind.file,
-          path: 'my-comp.js'
+          path: path.join(process.cwd(), 'my-comp.js')
         },
         ssrEnabled: false,
         logLevel: LogLevel.info
@@ -40,8 +42,8 @@ describe('CliOptionsParser', () => {
         ).toEqual({
           resolve: {
             kind: ResolverKind.file,
-            path: 'my-comp.js',
-            statePath: 'my-state.js',
+            path: path.join(process.cwd(), 'my-comp.js'),
+            statePath: path.join(process.cwd(), 'my-state.js')
           },
           ssrEnabled: false,
           logLevel: LogLevel.info
@@ -54,7 +56,7 @@ describe('CliOptionsParser', () => {
       });
     });
 
-    it('returns a parsed directory input', () => {
+    it('returns an absolute parsed directory input', () => {
       expect(
           parser.parseInput({
             directory: '/my-comps'
@@ -63,6 +65,21 @@ describe('CliOptionsParser', () => {
         resolve: {
           kind: ResolverKind.directory,
           path: '/my-comps'
+        },
+        ssrEnabled: false,
+        logLevel: LogLevel.info
+      });
+    });
+
+    it('returns a parsed directory input', () => {
+      expect(
+          parser.parseInput({
+            directory: 'my-comps'
+          })
+      ).toEqual({
+        resolve: {
+          kind: ResolverKind.directory,
+          path: path.join(process.cwd(), 'my-comps')
         },
         ssrEnabled: false,
         logLevel: LogLevel.info
@@ -92,7 +109,7 @@ describe('CliOptionsParser', () => {
       expect(parser.parseInput({ directory: '/my-comps', adapter: 'vue', configFile: 'my-config.js'}))
           .toMatchObject({
             adapter: AvailableAdapters.vue,
-            configFile: 'my-config.js'
+            configFile: path.join(process.cwd(), 'my-config.js')
           });
     });
 
@@ -153,12 +170,18 @@ describe('CliOptionsParser', () => {
 
     it('maps base url', () => {
       expect(parser.parseInput({...basicConfig, baseurl: '/'}).baseurl).toEqual('/');
+
+      expect(parser.parseInput({...basicConfig, baseurl: 'base/url'}).baseurl)
+          .toEqual(path.join(process.cwd(), 'base', 'url'));
+
       expect(parser.parseInput({...basicConfig}).baseurl).toBeUndefined();
     });
 
     it('maps dependencies', () => {
       expect(parser.parseInput({...basicConfig}).dependencies).toBeUndefined();
-      expect(parser.parseInput({...basicConfig, dependencies: 'deps.json'}).dependencies).toEqual('deps.json');
+      expect(parser.parseInput({...basicConfig, dependencies: '/deps.json'}).dependencies).toEqual('/deps.json');
+      expect(parser.parseInput({...basicConfig, dependencies: 'deps.json'}).dependencies)
+          .toEqual(path.join(process.cwd(), 'deps.json'));
     });
 
     it('returns the port', () => {
