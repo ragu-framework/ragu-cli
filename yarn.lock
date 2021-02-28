@@ -2312,17 +2312,17 @@ acorn-jsx@^5.2.0:
   resolved "https://registry.yarnpkg.com/acorn-jsx/-/acorn-jsx-5.3.1.tgz#fc8661e11b7ac1539c47dbfea2e72b3af34d267b"
   integrity sha512-K0Ptm/47OKfQRpNQ2J/oIN/3QYiK6FwW+eJbILhsdxh2WTLdl+30o8aGdTbm5JbffpFFAg/g+zi1E+jvJha5ng==
 
-acorn-walk@^6.1.1:
-  version "6.2.0"
-  resolved "https://registry.yarnpkg.com/acorn-walk/-/acorn-walk-6.2.0.tgz#123cb8f3b84c2171f1f7fb252615b1c78a6b1a8c"
-  integrity sha512-7evsyfH1cLOCdAzZAd43Cic04yKydNx0cF+7tiA19p1XnLLPU4dpCQOqpjqwokFe//vS0QqfqqjCS2JkiIs0cA==
-
 acorn-walk@^7.1.1:
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/acorn-walk/-/acorn-walk-7.2.0.tgz#0de889a601203909b0fbe07b8938dc21d2e967bc"
   integrity sha512-OPdCF6GsMIP+Az+aWfAAOEt2/+iVDKE7oy6lJ098aoe59oAmK76qV6Gw60SbZ8jHuG2wH058GF4pLFbYamYrVA==
 
-acorn@^6.0.5, acorn@^6.0.7, acorn@^6.4.1:
+acorn@^5.7.3:
+  version "5.7.4"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.4.tgz#3e8d8a9947d0599a1796d10225d7432f4a4acf5e"
+  integrity sha512-1D++VG7BhrtvQpNbBzovKNc1FLGGEE/oGe7b9xJm/RFHMBeUaUGpluV9RLjZa47YFdPcDAenEYuq9pQPcMdLJg==
+
+acorn@^6.0.5, acorn@^6.4.1:
   version "6.4.2"
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.4.2.tgz#35866fd710528e92de10cf06016498e47e39e1e6"
   integrity sha512-XtGIhXwF8YM8bJhGxG5kXgjkEuNGLTkoYqVE+KMR+aspr4KGYmKYg7yUe3KghyQ9yheNwLnjmzh/7+gfDBmHCQ==
@@ -9652,11 +9652,6 @@ ragu-dom@^0.0.15:
   resolved "https://registry.yarnpkg.com/ragu-dom/-/ragu-dom-0.0.15.tgz#08846233a1e230c12769cc787a904fdc38e39d75"
   integrity sha512-HukOKnXFDGO4vs1xKS1h+sDSdZBjnDaiyp3GQ3k2R9OGuEnB+Ea5CRw6vyLA9zEBN/nTGWYX7t2nZO+S+LROOA==
 
-ragu-dom@^0.0.22:
-  version "0.0.22"
-  resolved "https://registry.yarnpkg.com/ragu-dom/-/ragu-dom-0.0.22.tgz#8d40bc812b22c69cfc7ae6826b8eba138c222b0b"
-  integrity sha512-HBBmMnqt1/OrKsVaYRbtc97C4Z+o3ZkD90eafb7zniBeyhVypdAOgvncZyIRGprA8VS+3jDAzcDNeV1UFlYtMg==
-
 ragu-dom@^0.0.51:
   version "0.0.51"
   resolved "https://registry.yarnpkg.com/ragu-dom/-/ragu-dom-0.0.51.tgz#0c936636c255ae68df7b4ce4b678b30053ab7b0f"
@@ -9685,23 +9680,6 @@ ragu-react-server-adapter@^0.0.14:
     webpack-merge "^5.2.0"
     webpack-node-externals "^2.5.2"
 
-ragu-server@^0.0.27:
-  version "0.0.27"
-  resolved "https://registry.yarnpkg.com/ragu-server/-/ragu-server-0.0.27.tgz#ce563ae7820bfda2dbea665b4153379063a7d02c"
-  integrity sha512-7c+cJPhCwgWuv7/AzYNSkcOeQgdtKXo7gqpW+3DzOe1QwZFGgx12NT1HHcxDu4R4Vxwl/eUqLYI/G03CtxRR/A==
-  dependencies:
-    "@types/webpack-node-externals" "^2.5.0"
-    chalk "^4.1.0"
-    chunks-2-json-webpack-plugin "^1.0.4"
-    express "^4.17.1"
-    npm-programmatic "^0.0.12"
-    ragu-dom "^0.0.22"
-    webpack "^4.44.1"
-    webpack-bundle-analyzer "^3.8.0"
-    webpack-merge "^5.1.4"
-    webpack-node-externals "^2.5.2"
-    yargs "^16.0.3"
-
 ragu-server@^0.0.54:
   version "0.0.54"
   resolved "https://registry.yarnpkg.com/ragu-server/-/ragu-server-0.0.54.tgz#ca33b3f80c40e8e5f871dd138213a5061ca08ada"
@@ -9725,10 +9703,33 @@ ragu-server@^0.0.54:
     webpack-node-externals "^2.5.2"
     yargs "^16.0.3"
 
-ragu-vue-server-adapter@^0.0.54:
-  version "0.0.54"
-  resolved "https://registry.yarnpkg.com/ragu-vue-server-adapter/-/ragu-vue-server-adapter-0.0.54.tgz#af3f84d44d4f0b975b538dc55f3fd19dd9e74da8"
-  integrity sha512-PDMpU0g1/30kTtYYF4DWzhlGXuXlY7VNcApUDEtWn0hU2RJ7gZFNHNDvBL40aDMxmMb3CAEbOXqsRpwXEp6VCw==
+ragu-server@^0.0.55:
+  version "0.0.55"
+  resolved "https://registry.yarnpkg.com/ragu-server/-/ragu-server-0.0.55.tgz#6f05827a438dd79df0e2a027ae5ac7471106ae35"
+  integrity sha512-tdlH/Py8cTaLW3RTNllQlD5D6XGmVRSWzvOsbG8BtUkIgwZNJ9WCUMkZkwiSpwpbIdUQWvwKHO+7Yh6FbAse3A==
+  dependencies:
+    "@types/webpack-node-externals" "^2.5.0"
+    abort-controller "^3.0.0"
+    chalk "^4.1.0"
+    chunks-2-json-webpack-plugin "^1.0.4"
+    cross-fetch "^3.0.6"
+    deepmerge "^4.2.2"
+    express "^4.17.1"
+    find-package-json "^1.2.0"
+    is-plain-object "^5.0.0"
+    npm-programmatic "^0.0.12"
+    ragu-client-node "^0.0.3"
+    ragu-dom "^0.0.51"
+    webpack "^4.44.1"
+    webpack-bundle-analyzer "^3.8.0"
+    webpack-merge "^5.1.4"
+    webpack-node-externals "^2.5.2"
+    yargs "^16.0.3"
+
+ragu-vue-server-adapter@^0.0.57:
+  version "0.0.57"
+  resolved "https://registry.yarnpkg.com/ragu-vue-server-adapter/-/ragu-vue-server-adapter-0.0.57.tgz#02f80ba1d907e29e0413b540effbdcbdb6dfa4da"
+  integrity sha512-ESj8n1Tc8GIkbxM+wWDEx0xkKI9+exa7lZfN7x8yF5u15yoDG1v9kpyKiAUTGelYwExwy5oqDpj8IO1Ytp5RoA==
   dependencies:
     "@babel/core" "~7.2"
     "@babel/plugin-proposal-class-properties" "~7.3"
@@ -9755,7 +9756,7 @@ ragu-vue-server-adapter@^0.0.54:
     node-sass "~4"
     optimize-css-assets-webpack-plugin "~3.2"
     ragu-dom "^0.0.15"
-    ragu-server "^0.0.27"
+    ragu-server "^0.0.55"
     sass-loader "~7.1"
     style-loader "^1.2.1"
     uglifyjs-webpack-plugin "~1.2"
@@ -9765,7 +9766,7 @@ ragu-vue-server-adapter@^0.0.54:
     vue-style-loader "~4.1"
     vue-template-compiler "^2.6.12"
     webpack "~4.29"
-    webpack-bundle-analyzer "~3.3"
+    webpack-bundle-analyzer "~3.0"
     webpack-cli "~3.2"
     webpack-dev-server "~3.1"
     webpack-hot-middleware "~2.24"
@@ -11947,13 +11948,12 @@ webpack-bundle-analyzer@^3.8.0:
     opener "^1.5.1"
     ws "^6.0.0"
 
-webpack-bundle-analyzer@~3.3:
-  version "3.3.2"
-  resolved "https://registry.yarnpkg.com/webpack-bundle-analyzer/-/webpack-bundle-analyzer-3.3.2.tgz#3da733a900f515914e729fcebcd4c40dde71fc6f"
-  integrity sha512-7qvJLPKB4rRWZGjVp5U1KEjwutbDHSKboAl0IfafnrdXMrgC0tOtZbQD6Rw0u4cmpgRN4O02Fc0t8eAT+FgGzA==
+webpack-bundle-analyzer@~3.0:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/webpack-bundle-analyzer/-/webpack-bundle-analyzer-3.0.4.tgz#095638487a664162f19e3b2fb7e621b7002af4b8"
+  integrity sha512-ggDUgtKuQki4vmc93Ej65GlYxeCUR/0THa7gA+iqAGC2FFAxO+r+RM9sAUa8HWdw4gJ3/NZHX/QUcVgRjdIsDg==
   dependencies:
-    acorn "^6.0.7"
-    acorn-walk "^6.1.1"
+    acorn "^5.7.3"
     bfj "^6.1.1"
     chalk "^2.4.1"
     commander "^2.18.0"

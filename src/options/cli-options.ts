@@ -9,6 +9,7 @@ export enum ResolverKind {
 
 type ResolveOption = {
   path: string;
+  statePath?: string;
   kind: ResolverKind;
 };
 
@@ -30,12 +31,15 @@ export type CliOptions = ResolutionMode & {
   logLevel: LogLevel;
   baseurl?: string;
   port?: number;
-  outputPath?: string
+  outputPath?: string;
+  dependencies?: string;
 }
 
 export interface CliInput {
   ssrEnabled?: boolean;
   file?: string;
+  statePath?: string;
+  dependencies?: string;
   directory?: string;
   log?: string;
   adapter?: string;
@@ -50,6 +54,13 @@ export class NoComponentResolveSpecifiedError extends Error {
     super("You must specify a file or a directory");
   }
 }
+
+export class StateCannotBeSetWhenUsingDirectoryResolverError extends Error {
+  constructor() {
+    super("You should not provide a state file when resolving components by directory.");
+  }
+}
+
 
 export class InvalidOption extends Error {
   constructor(field: string, value: string) {
@@ -72,6 +83,7 @@ export class CliOptionsParser {
     return {
       configFile: input.configFile,
       baseurl: input.baseurl,
+      dependencies: input.dependencies,
       port: CliOptionsParser.parsePort(input),
       ssrEnabled: CliOptionsParser.parseSsrEnabled(input),
       logLevel: CliOptionsParser.parseLogLevel(input),
@@ -108,7 +120,7 @@ export class CliOptionsParser {
 
     return {
       adapter: AvailableAdapters.custom,
-      configFile: input.configFile
+      configFile: input.configFile,
     }
   }
 
@@ -155,11 +167,16 @@ export class CliOptionsParser {
     if (input.file) {
       return {
         path: input.file,
-        kind: ResolverKind.file
+        kind: ResolverKind.file,
+        statePath: input.statePath
       }
     }
 
     if (input.directory) {
+      if (input.statePath) {
+        throw new StateCannotBeSetWhenUsingDirectoryResolverError();
+      }
+
       return {
         path: input.directory,
         kind: ResolverKind.directory

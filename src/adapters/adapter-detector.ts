@@ -27,13 +27,13 @@ export class AdapterDetector {
 
   detectAdaptor(): AvailableAdapters | null {
     const adapter = this.adapterList.find((adapter) => {
-      return this.detectInstallation.isPackageInstalled(adapter.framework);
+      return this.detectInstallation.isPackageAvailable(adapter.framework);
     });
 
     if (adapter) {
       this.consoleLogger.info(`Framework detected! You are using "${adapter.framework}".`);
 
-      if (!this.detectInstallation.isPackageInstalled(adapter.adapterPackage)) {
+      if (!this.detectInstallation.isPackageAvailable(adapter.adapterPackage)) {
         this.consoleLogger.error(`Adapter Not Found! You must install the "${adapter.adapterPackage}" to proceed.`);
         throw new AdapterNotInstallerError(adapter.framework);
       }

@@ -4,7 +4,7 @@ import {
   InvalidOption,
   NoComponentResolveSpecifiedError,
   RequiredConfigFileForCustomAdapterError,
-  ResolverKind
+  ResolverKind, StateCannotBeSetWhenUsingDirectoryResolverError
 } from "./cli-options";
 import {LogLevel} from "ragu-server";
 import {AvailableAdapters} from "../adapters/available-adapters";
@@ -30,6 +30,27 @@ describe('CliOptionsParser', () => {
         },
         ssrEnabled: false,
         logLevel: LogLevel.info
+      });
+    });
+
+    describe('parsing state', () => {
+      it('returns a parsed state file input', () => {
+        expect(
+            parser.parseInput({...basicConfig, statePath: 'my-state.js'})
+        ).toEqual({
+          resolve: {
+            kind: ResolverKind.file,
+            path: 'my-comp.js',
+            statePath: 'my-state.js',
+          },
+          ssrEnabled: false,
+          logLevel: LogLevel.info
+        });
+      });
+
+      it('throws an exception given a directory resolver and a state file', () => {
+        expect(() => parser.parseInput({directory: '/my-comps', statePath: 'my-state.js'}))
+            .toThrow(new StateCannotBeSetWhenUsingDirectoryResolverError());
       });
     });
 
@@ -133,6 +154,11 @@ describe('CliOptionsParser', () => {
     it('maps base url', () => {
       expect(parser.parseInput({...basicConfig, baseurl: '/'}).baseurl).toEqual('/');
       expect(parser.parseInput({...basicConfig}).baseurl).toBeUndefined();
+    });
+
+    it('maps dependencies', () => {
+      expect(parser.parseInput({...basicConfig}).dependencies).toBeUndefined();
+      expect(parser.parseInput({...basicConfig, dependencies: 'deps.json'}).dependencies).toEqual('deps.json');
     });
 
     it('returns the port', () => {

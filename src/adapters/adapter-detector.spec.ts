@@ -9,7 +9,7 @@ class DetectInstallationStub extends DetectInstallation {
     super(container.resolve(ConsoleLogger));
   }
 
-  isPackageInstalled(packageName: string): boolean {
+  isPackageAvailable(packageName: string): boolean {
     return this.installedPackages
         .some((installedPackage: string) => installedPackage === packageName);
   }

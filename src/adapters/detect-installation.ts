@@ -6,7 +6,7 @@ import {injectable} from "tsyringe";
 export class DetectInstallation {
   constructor(private readonly logger: ConsoleLogger) {}
 
-  isPackageInstalled(packageName: string): boolean {
+  isPackageAvailable(packageName: string): boolean {
     try {
       require(packageName);
       this.logger.debug(`The package "${packageName}" was found!`);
