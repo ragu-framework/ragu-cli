@@ -3,3 +3,5 @@ export enum AvailableAdapters {
   vue = 'vue',
   custom = 'custom'
 }
+
+export type NonCustomAdapters = Exclude<AvailableAdapters, AvailableAdapters.custom>;

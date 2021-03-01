@@ -1,35 +1,70 @@
 import {Command} from "./commands/command";
-import {ConsoleLogger} from "ragu-server";
-import {container} from "tsyringe";
+import {ConsoleLogger, LogLevel} from "ragu-server";
+import {container, inject, injectable} from "tsyringe";
 import InjectionToken from "tsyringe/dist/typings/providers/injection-token";
 import {CliInput, CliOptions, CliOptionsParser} from "./options/cli-options";
+import {AdapterDetector} from "./adapters/adapter-detector";
+import {AvailableAdapters} from "./adapters/available-adapters";
 
+const protectedApplicationOptions = Symbol();
+
+@injectable()
 export class Application {
-  private consoleLogger: ConsoleLogger = new ConsoleLogger();
+  constructor(
+      @inject(protectedApplicationOptions) private options: CliOptions,
+      private consoleLogger: ConsoleLogger,
+      private adapterDetector: AdapterDetector
+  ) {
+  }
 
-  async execute(command: InjectionToken<Command>, input: CliInput) {
+  async execute(command: InjectionToken<Command>) {
+    try {
+      await container.resolve(command).run(this.getOptions());
+    } catch (e) {
+      this.processException(e);
+    }
+  }
+
+  private getOptions() {
+    const options = this.options;
+
+    if (!options.adapter || options.adapter !== AvailableAdapters.custom) {
+      return {
+        ...options,
+        adapter: this.adapterDetector.detectAdaptor()
+      }
+    }
+
+    return options;
+  }
+
+  private processException(e: any) {
+    const message = e.message || e;
+    this.consoleLogger.error(message);
+
+    if (this.options.logLevel === LogLevel.debug) {
+      console.log(e);
+    }
+  }
+
+  static init(input: CliInput) {
     const cliOptionsParser = container.resolve(CliOptionsParser);
 
     try {
       const options = cliOptionsParser.parseInput(input);
-      this.registerLogger(options);
-      await container.resolve(command).run(options);
+      container.registerInstance(protectedApplicationOptions, options);
+      container.registerInstance(ConsoleLogger, new ConsoleLogger(options.logLevel));
+
+      return container.resolve(Application);
     } catch (e) {
-      this.processException(e, input);
-    }
-  }
+      const message = e.message || e;
+      new ConsoleLogger().error(message);
 
-  private registerLogger(options: CliOptions) {
-    this.consoleLogger = new ConsoleLogger(options.logLevel);
-    container.registerInstance(ConsoleLogger, this.consoleLogger);
-  }
+      if (input.log === 'debug') {
+        console.log(e);
+      }
 
-  private processException(e: any, input: CliInput) {
-    const message = e.message || e;
-    this.consoleLogger.error(message);
-
-    if (input.log === 'debug') {
-      console.log(e);
+      return { execute() {} }
     }
   }
 }

@@ -1,5 +1,5 @@
 import {container} from "tsyringe";
-import {AdapterNotInstallerError, AdapterDetector} from "./adapter-detector";
+import {AdapterNotInstallerError, AdapterDetector, ImpossibleToDetectAdapter} from "./adapter-detector";
 import {DetectInstallation} from "./detect-installation";
 import {ConsoleLogger} from "ragu-server";
 import {AvailableAdapters} from "./available-adapters";
@@ -57,12 +57,12 @@ describe('AdapterDetector', () => {
   });
 
   describe('when using nothing', () => {
-    it('return null', () => {
+    it('throws an error', () => {
       container.registerInstance(DetectInstallation, new DetectInstallationStub([]));
 
       const adaptorDetector = container.resolve(AdapterDetector);
 
-      expect(adaptorDetector.detectAdaptor()).toBeNull();
+      expect(() => adaptorDetector.detectAdaptor()).toThrow(new ImpossibleToDetectAdapter());
     });
   })
 });

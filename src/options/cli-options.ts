@@ -1,5 +1,5 @@
 import {LogLevel} from "ragu-server";
-import {AvailableAdapters} from "../adapters/available-adapters";
+import {AvailableAdapters, NonCustomAdapters} from "../adapters/available-adapters";
 import {injectable} from "tsyringe";
 import * as path from "path";
 
@@ -16,7 +16,7 @@ type ResolveOption = {
 
 export interface AutoResolveOption {
   resolve: ResolveOption;
-  adapter?: AvailableAdapters.vue | AvailableAdapters.react;
+  adapter?: NonCustomAdapters;
   configFile?: string;
 }
 

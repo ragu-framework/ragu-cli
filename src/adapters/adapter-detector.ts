@@ -1,7 +1,7 @@
 import {injectable} from "tsyringe";
 import {ConsoleLogger} from "ragu-server";
 import {DetectInstallation} from "./detect-installation";
-import {AvailableAdapters} from "./available-adapters";
+import {AvailableAdapters, NonCustomAdapters} from "./available-adapters";
 
 export class AdapterNotInstallerError extends Error {
   constructor(public readonly adapter: AvailableAdapters) {
@@ -9,9 +9,20 @@ export class AdapterNotInstallerError extends Error {
   }
 }
 
+export class ImpossibleToDetectAdapter extends Error {
+  constructor() {
+    super("It was not possible do infer the adapter. Define one to proceed.");
+  }
+}
+
+interface AdapterPackageMap {
+  framework: NonCustomAdapters,
+  adapterPackage: string
+}
+
 @injectable()
 export class AdapterDetector {
-  private readonly adapterList = [
+  private readonly adapterList: AdapterPackageMap[] = [
     {
       framework: AvailableAdapters.react,
       adapterPackage: 'ragu-react-server-adapter'
@@ -25,7 +36,7 @@ export class AdapterDetector {
   constructor(private readonly consoleLogger: ConsoleLogger, private readonly detectInstallation: DetectInstallation) {
   }
 
-  detectAdaptor(): AvailableAdapters | null {
+  detectAdaptor(): NonCustomAdapters {
     const adapter = this.adapterList.find((adapter) => {
       return this.detectInstallation.isPackageAvailable(adapter.framework);
     });
@@ -41,6 +52,6 @@ export class AdapterDetector {
       return adapter.framework;
     }
 
-    return null;
+    throw new ImpossibleToDetectAdapter()
   }
 }
