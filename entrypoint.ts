@@ -1,140 +1,63 @@
 #!/usr/bin/env node
 import {Command} from 'commander';
-import {detectFramework, SupportedFrameworks} from "./src/detect-framework";
-import {ConsoleLogger} from "ragu-server";
+import {Application} from "./src/application";
+import {CliInput} from "./src/options/cli-options";
+import {DevServer} from "./src/commands/dev-server";
+import {BuildStatic} from "./src/commands/build-static";
+
 const packageJson = require('./package.json');
 
 const program = new Command();
 
-export interface Options {
-  adapter?: string;
-  debug: boolean;
-  ssr: boolean
-}
-
-
 program
+    .description('Welcome to ragu-cli. Check the list of commands bellow:')
     .version(packageJson.version);
 
-const log = new ConsoleLogger();
-
-const getFramework = (options: Options): SupportedFrameworks | null => {
-  if (options.adapter) {
-    if (options.adapter === 'react' || options.adapter === 'vue' || options.adapter === 'custom') {
-      return options.adapter
-    }
-
-    log.error(`The provided adapter is not supported: ${options.adapter}`);
-    return null;
-  }
-
-  const detectedFramework = detectFramework();
-
-  if (detectedFramework) {
-    return detectedFramework
-  }
-
-  log.error(`It was not possible to auto detect the used framework. Provide a adapter by --adapter`);
-  return null;
-}
-
-const setDefaultOptions = (program: Command | any): Command => {
+const defaultOptions = (program: Command | any): Command => {
   return program
-      .option('-a, --adapter <adapter>', 'The framework adapter: react, vue')
-      .option('--ssr', 'activate the Server Side Rendering Mode')
-      .option('--dependencies <dependencies>', 'A json file with all dependencies')
-      .option('--output', 'Output directory default: .ragu-components')
-      .option('-h, --host <host>', 'base host name', 'http://localhost:3100')
-      .option('-c, --configFile <configFile>', 'A custom config file')
-      .option('-d, --debug', 'output extra debugging', false);
+      .option('--ssrEnabled', 'Enables SSR')
+      .option('--file <file>', 'Your component file')
+      .option('--stateFile <stateFile>', 'Your component file')
+      .option('--dependencies <dependencies>', 'Project external dependencies')
+      .option('--directory <directory>', 'The directory for multiple components server')
+      .option('--log <log>', 'The application log level: debug, info, warn, error')
+      .option('--adapter <adapter>', 'The adapter for your component: react, vue, custom')
+      .option('--baseurl <baseurl>', 'Your component baseurl where you component will be deployed')
+      .option('--configFile <configFile>', 'A custom config file')
+      .option('--port <port>', 'The server port')
+      .option('--outputPath <outputPath>', 'Where your component will be built. Default: .ragu-components')
 }
 
-const getCommand = (commandName: string, options: Options) => {
-  let framework = getFramework(options);
-  if (framework) {
-    log.info(`Running command using ${framework} adapter`);
-
-    const {default: command} = require(`./src/tasks/${framework}/${commandName}`);
-
-    return command;
+const commands = [
+  {
+    name: 'dev',
+    description: 'Starts ragu server in development mode for the given component.',
+    command: DevServer
+  },
+  {
+    name: 'static',
+    description: "Build the project as a static ragu project",
+    command: BuildStatic
+  },
+  {
+    name: 'build',
+    description: "Build the project to production",
+    command: BuildStatic
+  },
+  {
+    name: 'serve',
+    description: "Production server. You must the same options given for build command.",
+    command: BuildStatic
   }
-}
+]
 
-setDefaultOptions(program
-    .command('dev <componentFile> [stateFile]')
-    .description('Starts the ragu server in development mode for the given component.'))
-    .action((componentFile, stateFile, options: Options) => {
-      if (options.debug) {
-        console.log({...options, componentFile, stateFile});
-      }
-      const command = getCommand('dev', options);
-
-      if (command) {
-        command({
-          ...options,
-          strategy: 'single',
-          fileName: componentFile,
-          stateFile,
-          ssrEnabled: options.ssr
-        });
-      }
-    });
-
-setDefaultOptions(program
-    .command('dev:directory <componentsDirectory>')
-    .description('Starts the ragu server in development mode at the given directory.'))
-    .action((componentsDirectory, options: Options) => {
-      if (options.debug) {
-        console.log({...options, componentsDirectory});
-      }
-
-      const command = getCommand('dev_multi', options);
-      if (command) {
-
-        command({
-          ...options,
-          componentsDirectory,
-          ssrEnabled: options.ssr
-        });
-      }
-    });
-
-
-setDefaultOptions(program
-    .command('build:static <componentFile>')
-    .description('Build a ragu component using the static method.'))
-    .action((componentFile, options: Options) => {
-      if (options.debug) {
-        console.log({...options, componentFile});
-      }
-      const command = getCommand('static', options);
-
-      if (command) {
-        command({
-          ...options,
-          fileName: componentFile,
-          ssrEnabled: options.ssr
-        });
-      }
-    });
-
-
-setDefaultOptions(program
-    .command('build:static:directory <componentFile>')
-    .description('Build a ragu component using the static method.'))
-    .action((componentFile, options: Options) => {
-      if (options.debug) {
-        console.log({...options, componentFile});
-      }
-      const command = getCommand('static_multi', options);
-
-      if (command) {
-        command({
-          ...options,
-          fileName: componentFile,
-          ssrEnabled: options.ssr
-        });
-      }
-    });
+commands.forEach((command) => {
+  defaultOptions(program
+      .command(command.name)
+      .description(command.description))
+      .action((input: CliInput) => {
+        Application.init(input).execute(command.command)
+      });
+});
 
 program.parse();
