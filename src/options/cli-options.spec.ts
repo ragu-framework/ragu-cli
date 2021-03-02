@@ -169,11 +169,7 @@ describe('CliOptionsParser', () => {
     });
 
     it('maps base url', () => {
-      expect(parser.parseInput({...basicConfig, baseurl: '/'}).baseurl).toEqual('/');
-
-      expect(parser.parseInput({...basicConfig, baseurl: 'base/url'}).baseurl)
-          .toEqual(path.join(process.cwd(), 'base', 'url'));
-
+      expect(parser.parseInput({...basicConfig, baseurl: 'http://baseurl'}).baseurl).toEqual('http://baseurl');
       expect(parser.parseInput({...basicConfig}).baseurl).toBeUndefined();
     });
 

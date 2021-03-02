@@ -83,7 +83,7 @@ export class CliOptionsParser {
 
     return {
       configFile: CliOptionsParser.parseUserProvidedPath(input.configFile),
-      baseurl: CliOptionsParser.parseUserProvidedPath(input.baseurl),
+      baseurl: input.baseurl,
       dependencies: CliOptionsParser.parseUserProvidedPath(input.dependencies),
       outputPath: CliOptionsParser.parseUserProvidedPath(input.outputPath),
       port: CliOptionsParser.parsePort(input),
