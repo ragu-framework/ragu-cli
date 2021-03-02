@@ -9479,10 +9479,10 @@ raf@^3.4.1:
   dependencies:
     performance-now "^2.1.0"
 
-ragu-cli@^0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/ragu-cli/-/ragu-cli-0.0.7.tgz#2f8745e8146d6f2fcf53b61359908d7ad61fca62"
-  integrity sha512-GTu4SSqASq/p0RktDR+wRhYucnZWFjf2KXD6YnMWHIK6YtXzTD1r5XT6fXErdFdfvJEbxxN0h98ceeu0LupQsw==
+ragu-cli@^0.0.8:
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/ragu-cli/-/ragu-cli-0.0.8.tgz#cc234b88e72e9ccaeef7fa2f810af916a3e4f18c"
+  integrity sha512-anLJeYf3MTCQA7d/BelME1bvMUXHaGylcv2WNT2D5kQNK0x2s+KseH+iros4qMtjlgQvjKkvkG8qXeiakTIlyw==
   dependencies:
     commander "^7.1.0"
     ragu-server "^0.0.54"
