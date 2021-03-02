@@ -9726,10 +9726,10 @@ ragu-server@^0.0.56:
     webpack-node-externals "^2.5.2"
     yargs "^16.0.3"
 
-ragu-vue-server-adapter@^0.0.57:
-  version "0.0.57"
-  resolved "https://registry.yarnpkg.com/ragu-vue-server-adapter/-/ragu-vue-server-adapter-0.0.57.tgz#02f80ba1d907e29e0413b540effbdcbdb6dfa4da"
-  integrity sha512-ESj8n1Tc8GIkbxM+wWDEx0xkKI9+exa7lZfN7x8yF5u15yoDG1v9kpyKiAUTGelYwExwy5oqDpj8IO1Ytp5RoA==
+ragu-vue-server-adapter@^0.0.58:
+  version "0.0.58"
+  resolved "https://registry.yarnpkg.com/ragu-vue-server-adapter/-/ragu-vue-server-adapter-0.0.58.tgz#3717bfe41d1803027bec0bb55dacfe0b86b0492a"
+  integrity sha512-4fme0xmBa7ueAjMcEABowampX+8D2bzJevWpk3Mxt9LaaladmafZXBY4+A950aU6WcWwj/z5ZLwjBzjN/7LqiQ==
   dependencies:
     "@babel/core" "~7.2"
     "@babel/plugin-proposal-class-properties" "~7.3"

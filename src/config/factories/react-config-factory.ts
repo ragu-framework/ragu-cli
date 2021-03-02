@@ -1,7 +1,6 @@
 import {injectable} from "tsyringe";
 import {RaguServerBaseConfigProps, RaguServerConfig} from "ragu-server";
 import {AdapterConfigFactory} from "../adapter-config-factory";
-import {ReactSingleComponentResolver} from "ragu-react-server-adapter/component-resolver";
 import {removeExtension} from "../../path_extension";
 
 @injectable()
@@ -12,6 +11,7 @@ export class ReactConfigFactory implements AdapterConfigFactory {
   }
 
   createSingleComponentConfig(overrides: RaguServerBaseConfigProps, componentPath: string, statePath?: string): RaguServerConfig {
+    const {ReactSingleComponentResolver} = require("ragu-react-server-adapter/component-resolver");
     const config = this.createDirectoryConfig(overrides);
 
     config.components.resolver = new ReactSingleComponentResolver(
