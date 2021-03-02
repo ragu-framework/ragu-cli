@@ -19,7 +19,7 @@ describe('AdapterDetector', () => {
   describe('when using react', () => {
     it('returns react given react and ragu-react-server-adapter is installed', () => {
       const logger = container.resolve(ConsoleLogger);
-      container.registerInstance(DetectInstallation, new DetectInstallationStub(['react', 'ragu-react-server-adapter']));
+      container.registerInstance(DetectInstallation, new DetectInstallationStub(['react', 'ragu-react-server-adapter/config']));
       const adaptorDetector = container.resolve(AdapterDetector);
 
       expect(adaptorDetector.detectAdaptor()).toEqual(AvailableAdapters.react);
@@ -39,7 +39,7 @@ describe('AdapterDetector', () => {
   describe('when using vue', () => {
     it('returns vue given vue and ragu-vue-server-adapter is installed', () => {
       const logger = container.resolve(ConsoleLogger);
-      container.registerInstance(DetectInstallation, new DetectInstallationStub(['vue', 'ragu-vue-server-adapter']));
+      container.registerInstance(DetectInstallation, new DetectInstallationStub(['vue', 'ragu-vue-server-adapter/config']));
       const adaptorDetector = container.resolve(AdapterDetector);
 
       expect(adaptorDetector.detectAdaptor()).toEqual(AvailableAdapters.vue);

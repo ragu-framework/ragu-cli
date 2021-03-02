@@ -19,12 +19,12 @@ program
 const log = new ConsoleLogger();
 
 const getFramework = (options: Options): SupportedFrameworks | null => {
-  if (options.adapterPackage) {
-    if (options.adapterPackage === 'react' || options.adapterPackage === 'vue' || options.adapterPackage === 'custom') {
-      return options.adapterPackage
+  if (options.adapter) {
+    if (options.adapter === 'react' || options.adapter === 'vue' || options.adapter === 'custom') {
+      return options.adapter
     }
 
-    log.error(`The provided adapter is not supported: ${options.adapterPackage}`);
+    log.error(`The provided adapter is not supported: ${options.adapter}`);
     return null;
   }
 

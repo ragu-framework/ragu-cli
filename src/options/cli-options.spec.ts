@@ -38,7 +38,7 @@ describe('CliOptionsParser', () => {
     describe('parsing state', () => {
       it('returns a parsed state file input', () => {
         expect(
-            parser.parseInput({...basicConfig, statePath: 'my-state.js'})
+            parser.parseInput({...basicConfig, stateFile: 'my-state.js'})
         ).toEqual({
           resolve: {
             kind: ResolverKind.file,
@@ -51,7 +51,7 @@ describe('CliOptionsParser', () => {
       });
 
       it('throws an exception given a directory resolver and a state file', () => {
-        expect(() => parser.parseInput({directory: '/my-comps', statePath: 'my-state.js'}))
+        expect(() => parser.parseInput({directory: '/my-comps', stateFile: 'my-state.js'}))
             .toThrow(new StateCannotBeSetWhenUsingDirectoryResolverError());
       });
     });

@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import {Command} from "./commands/command";
 import {ConsoleLogger, LogLevel} from "ragu-server";
 import {container, inject, injectable} from "tsyringe";
@@ -5,6 +6,7 @@ import InjectionToken from "tsyringe/dist/typings/providers/injection-token";
 import {CliInput, CliOptions, CliOptionsParser} from "./options/cli-options";
 import {AdapterDetector} from "./adapters/adapter-detector";
 import {AvailableAdapters} from "./adapters/available-adapters";
+import {ConfigFactory} from "./config/config-factory";
 
 const protectedApplicationOptions = Symbol();
 
@@ -12,14 +14,16 @@ const protectedApplicationOptions = Symbol();
 export class Application {
   constructor(
       @inject(protectedApplicationOptions) private options: CliOptions,
-      private consoleLogger: ConsoleLogger,
-      private adapterDetector: AdapterDetector
+      private readonly consoleLogger: ConsoleLogger,
+      private readonly adapterDetector: AdapterDetector,
+      private readonly configFactory: ConfigFactory
   ) {
   }
 
   async execute(command: InjectionToken<Command>) {
     try {
-      await container.resolve(command).run(this.getOptions());
+      const options = this.getOptions();
+      await container.resolve(command).run(options, this.configFactory.createConfig(options));
     } catch (e) {
       this.processException(e);
     }

@@ -39,7 +39,7 @@ export type CliOptions = ResolutionMode & {
 export interface CliInput {
   ssrEnabled?: boolean;
   file?: string;
-  statePath?: string;
+  stateFile?: string;
   dependencies?: string;
   directory?: string;
   log?: string;
@@ -180,12 +180,12 @@ export class CliOptionsParser {
       return {
         path: CliOptionsParser.parseUserProvidedPath(input.file),
         kind: ResolverKind.file,
-        statePath: CliOptionsParser.parseUserProvidedPath(input.statePath)
+        statePath: CliOptionsParser.parseUserProvidedPath(input.stateFile)
       }
     }
 
     if (input.directory) {
-      if (input.statePath) {
+      if (input.stateFile) {
         throw new StateCannotBeSetWhenUsingDirectoryResolverError();
       }
 

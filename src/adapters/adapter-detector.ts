@@ -17,7 +17,8 @@ export class ImpossibleToDetectAdapter extends Error {
 
 interface AdapterPackageMap {
   framework: NonCustomAdapters,
-  adapterPackage: string
+  adapterPackage: string,
+  adapterName: string
 }
 
 @injectable()
@@ -25,11 +26,13 @@ export class AdapterDetector {
   private readonly adapterList: AdapterPackageMap[] = [
     {
       framework: AvailableAdapters.react,
-      adapterPackage: 'ragu-react-server-adapter'
+      adapterName: 'ragu-react-server-adapter',
+      adapterPackage: 'ragu-react-server-adapter/config'
     },
     {
       framework: AvailableAdapters.vue,
-      adapterPackage: 'ragu-vue-server-adapter'
+      adapterName: 'ragu-vue-server-adapter',
+      adapterPackage: 'ragu-vue-server-adapter/config'
     }
   ]
 
@@ -45,7 +48,7 @@ export class AdapterDetector {
       this.consoleLogger.info(`Framework detected! You are using "${adapter.framework}".`);
 
       if (!this.detectInstallation.isPackageAvailable(adapter.adapterPackage)) {
-        this.consoleLogger.error(`Adapter Not Found! You must install the "${adapter.adapterPackage}" to proceed.`);
+        this.consoleLogger.error(`Adapter Not Found! You must install the "${adapter.adapterName}" to proceed.`);
         throw new AdapterNotInstallerError(adapter.framework);
       }
 
