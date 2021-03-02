@@ -9680,10 +9680,10 @@ ragu-react-server-adapter@^0.0.14:
     webpack-merge "^5.2.0"
     webpack-node-externals "^2.5.2"
 
-ragu-server@^0.0.54:
-  version "0.0.54"
-  resolved "https://registry.yarnpkg.com/ragu-server/-/ragu-server-0.0.54.tgz#ca33b3f80c40e8e5f871dd138213a5061ca08ada"
-  integrity sha512-mqWg8j6FNKmFZNi3Du3UQ5rvEXtT9GBiHCm/5yZ/RjszTmZ9HSsc79oC080cHZuVXHx+OYNK/14F+voCTlPpSQ==
+ragu-server@^0.0.55:
+  version "0.0.55"
+  resolved "https://registry.yarnpkg.com/ragu-server/-/ragu-server-0.0.55.tgz#6f05827a438dd79df0e2a027ae5ac7471106ae35"
+  integrity sha512-tdlH/Py8cTaLW3RTNllQlD5D6XGmVRSWzvOsbG8BtUkIgwZNJ9WCUMkZkwiSpwpbIdUQWvwKHO+7Yh6FbAse3A==
   dependencies:
     "@types/webpack-node-externals" "^2.5.0"
     abort-controller "^3.0.0"
@@ -9703,10 +9703,10 @@ ragu-server@^0.0.54:
     webpack-node-externals "^2.5.2"
     yargs "^16.0.3"
 
-ragu-server@^0.0.55:
-  version "0.0.55"
-  resolved "https://registry.yarnpkg.com/ragu-server/-/ragu-server-0.0.55.tgz#6f05827a438dd79df0e2a027ae5ac7471106ae35"
-  integrity sha512-tdlH/Py8cTaLW3RTNllQlD5D6XGmVRSWzvOsbG8BtUkIgwZNJ9WCUMkZkwiSpwpbIdUQWvwKHO+7Yh6FbAse3A==
+ragu-server@^0.0.56:
+  version "0.0.56"
+  resolved "https://registry.yarnpkg.com/ragu-server/-/ragu-server-0.0.56.tgz#271bf31161866e4406158012043689b55e5f8510"
+  integrity sha512-h3LZRm+Gk4WYCp2U3P17m0wr4SjgbbdsFdDleR+H0Y4IfH38bceoDK3X/aKZ3K97RsKbO8knHTIjE+8oZ1HUcQ==
   dependencies:
     "@types/webpack-node-externals" "^2.5.0"
     abort-controller "^3.0.0"
