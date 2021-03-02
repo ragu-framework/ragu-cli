@@ -6,7 +6,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
-    "ragu-cli": "^0.0.6",
+    "ragu-cli": "^0.0.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.3",
@@ -18,8 +18,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "mfe:dev": "yarn ragu-cli dev mfe.jsx --dependencies dependencies.json",
-    "build:mfe": "SC_ATTR=true ragu-cli build:static mfe.jsx -h https://ragu-framework.github.io/ragu-cli --dependencies dependencies.json"
+    "mfe:dev": "yarn ragu-cli --file dev mfe.jsx --dependencies dependencies.json",
+    "build:mfe": "ragu-cli static --file mfe.jsx --baseurl https://ragu-framework.github.io/ragu-cli --dependencies dependencies.json"
   },
   "eslintConfig": {
     "extends": [
