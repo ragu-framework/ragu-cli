@@ -1,6 +1,6 @@
 <p align="center" style="color: #343a40">
-  <p align="center" >
-    <img src="repository-assets/logo.png" alt="Ragu" align="center">
+  <p align="center">
+    <img src="repository-assets/logo.png" alt="Ragu" align="center" style="max-width: 100%;">
   </p>
   <h1 align="center">ragu-cli: A CLI for improve your experience with Micro-frontend</h1>
 </p>
