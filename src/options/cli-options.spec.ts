@@ -184,6 +184,13 @@ describe('CliOptionsParser', () => {
           .toEqual(path.join(process.cwd(), 'deps.json'));
     });
 
+    it('maps outputPath', () => {
+      expect(parser.parseInput({...basicConfig}).outputPath).toBeUndefined();
+      expect(parser.parseInput({...basicConfig, outputPath: '/out'}).outputPath).toEqual('/out');
+      expect(parser.parseInput({...basicConfig, outputPath: 'out'}).outputPath)
+          .toEqual(path.join(process.cwd(), 'out'));
+    });
+
     it('returns the port', () => {
       expect(parser.parseInput({...basicConfig, port: '4000'}).port).toEqual(4000);
       expect(parser.parseInput({...basicConfig}).port).toBeUndefined();

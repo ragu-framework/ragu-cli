@@ -85,6 +85,7 @@ export class CliOptionsParser {
       configFile: CliOptionsParser.parseUserProvidedPath(input.configFile),
       baseurl: CliOptionsParser.parseUserProvidedPath(input.baseurl),
       dependencies: CliOptionsParser.parseUserProvidedPath(input.dependencies),
+      outputPath: CliOptionsParser.parseUserProvidedPath(input.outputPath),
       port: CliOptionsParser.parsePort(input),
       ssrEnabled: CliOptionsParser.parseSsrEnabled(input),
       logLevel: CliOptionsParser.parseLogLevel(input),
