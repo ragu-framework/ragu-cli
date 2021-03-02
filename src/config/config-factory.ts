@@ -1,11 +1,11 @@
 import {injectable} from "tsyringe";
 import {CliOptions, ResolverKind} from "../options/cli-options";
 import {RaguServerBaseConfigProps, RaguServerConfig} from "ragu-server";
-import {ReactConfigFactory} from "./react-config-factory";
+import {ReactConfigFactory} from "./factories/react-config-factory";
 import {AdapterConfigFactory} from "./adapter-config-factory";
 import {AvailableAdapters} from "../adapters/available-adapters";
-import {VueConfigFactory} from "./vue-config-factory";
-import {CustomConfigAbstractFactory} from "./custom-config-factory";
+import {VueConfigFactory} from "./factories/vue-config-factory";
+import {CustomConfigAbstractFactory} from "./factories/custom-config-factory";
 import {DetectInstallation} from "../adapters/detect-installation";
 
 

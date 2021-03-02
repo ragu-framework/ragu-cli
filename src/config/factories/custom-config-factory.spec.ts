@@ -8,7 +8,7 @@ describe('CustomConfigFactory', () => {
     const customConfigAbstractFactory = container.resolve(CustomConfigAbstractFactory);
 
     const factory = customConfigAbstractFactory
-        .build(path.resolve(__dirname, '_testing', 'config-file.js'));
+        .build(path.resolve(__dirname, '..', '_testing', 'config-file.js'));
 
     expect(factory.createDirectoryConfig({}))
         .toEqual({
@@ -20,7 +20,7 @@ describe('CustomConfigFactory', () => {
     const customConfigAbstractFactory = container.resolve(CustomConfigAbstractFactory);
 
     const factory = customConfigAbstractFactory
-        .build(path.resolve(__dirname, '_testing', 'config-file.js'));
+        .build(path.resolve(__dirname, '..', '_testing', 'config-file.js'));
 
     expect(factory.createDirectoryConfig({
       ssrEnabled: true
@@ -35,7 +35,7 @@ describe('CustomConfigFactory', () => {
     const customConfigAbstractFactory = container.resolve(CustomConfigAbstractFactory);
 
     const factory = customConfigAbstractFactory
-        .build(path.resolve(__dirname, '_testing', 'config-file.js'));
+        .build(path.resolve(__dirname, '..', '_testing', 'config-file.js'));
 
     expect(() => factory.createDirectoryConfig({
       compiler: {
@@ -49,7 +49,7 @@ describe('CustomConfigFactory', () => {
   it('throws an exception when the file does not exists', () => {
     const customConfigAbstractFactory = container.resolve(CustomConfigAbstractFactory);
 
-    const configPath = path.resolve(__dirname, '_testing', 'not-found.js');
+    const configPath = path.resolve(__dirname, '..', '_testing', 'not-found.js');
 
     const factory = customConfigAbstractFactory
         .build(configPath);
@@ -62,7 +62,7 @@ describe('CustomConfigFactory', () => {
     const customConfigAbstractFactory = container.resolve(CustomConfigAbstractFactory);
 
     const factory = customConfigAbstractFactory
-        .build(path.resolve(__dirname, '_testing', 'config-file.js'));
+        .build(path.resolve(__dirname, '..', '_testing', 'config-file.js'));
 
     expect(factory.createSingleComponentConfig({}, 'my-file.js')).toEqual({
       customConfig: true,

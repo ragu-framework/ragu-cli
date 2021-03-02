@@ -1,8 +1,8 @@
 import {injectable} from "tsyringe";
 import {RaguServerBaseConfigProps, RaguServerConfig} from "ragu-server";
-import {AdapterConfigFactory} from "./adapter-config-factory";
+import {AdapterConfigFactory} from "../adapter-config-factory";
 import {ReactSingleComponentResolver} from "ragu-react-server-adapter/component-resolver";
-import {removeExtension} from "../path_extension";
+import {removeExtension} from "../../path_extension";
 
 @injectable()
 export class ReactConfigFactory implements AdapterConfigFactory {

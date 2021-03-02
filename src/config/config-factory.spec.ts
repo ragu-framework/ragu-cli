@@ -3,9 +3,9 @@ import {ConfigFactory, DependenciesFileNotFoundError} from "./config-factory";
 import {ResolverKind} from "../options/cli-options";
 import {AvailableAdapters} from "../adapters/available-adapters";
 import {ConsoleLogger, LogLevel} from "ragu-server";
-import {ReactConfigFactory} from "./react-config-factory";
-import {VueConfigFactory} from "./vue-config-factory";
-import {CustomConfigAbstractFactory, CustomConfigFactory} from "./custom-config-factory";
+import {ReactConfigFactory} from "./factories/react-config-factory";
+import {VueConfigFactory} from "./factories/vue-config-factory";
+import {CustomConfigAbstractFactory, CustomConfigFactory} from "./factories/custom-config-factory";
 import {DetectInstallation} from "../adapters/detect-installation";
 import * as path from "path";
 

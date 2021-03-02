@@ -1,7 +1,7 @@
-import {AdapterConfigFactory} from "./adapter-config-factory";
+import {AdapterConfigFactory} from "../adapter-config-factory";
 import {ConsoleLogger, mergeConfig, RaguServerBaseConfigProps, RaguServerConfig} from "ragu-server";
 import {injectable} from "tsyringe";
-import {DetectInstallation} from "../adapters/detect-installation";
+import {DetectInstallation} from "../../adapters/detect-installation";
 
 export class InvalidCustomConfigOverride extends Error {
   constructor(field: string) {
