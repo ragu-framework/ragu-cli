@@ -1,6 +1,6 @@
 {
   "name": "ragu-cli",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "description": "A command line helper for ragu framework",
   "main": "entrypoint.js",
   "repository": "https://github.com/ragu-framework/ragu-cli.git",
@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "commander": "^7.1.0",
-    "ragu-server": "^0.0.56",
+    "ragu-server": "^0.0.58",
     "reflect-metadata": "^0.1.13",
     "tsyringe": "^4.4.0"
   },
