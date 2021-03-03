@@ -32,7 +32,7 @@ export class ConfigFactory {
         logging: {
           level: options.logLevel
         },
-        port: options.port
+        ...ConfigFactory.getPort(options)
       },
       ssrEnabled: options.ssrEnabled,
       ...ConfigFactory.outputConfigFor(options),
@@ -45,6 +45,16 @@ export class ConfigFactory {
     }
 
     return factory.createDirectoryConfig(overrides);
+  }
+
+  private static getPort(options: CliOptions) {
+    if (!options.port) {
+      return;
+    }
+
+    return {
+      port: options.port
+    };
   }
 
   private getConfigFactory(options: CliOptions): AdapterConfigFactory {
