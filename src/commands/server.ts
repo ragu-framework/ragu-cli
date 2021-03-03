@@ -6,12 +6,9 @@ import {injectable} from "tsyringe";
 @injectable()
 export class Server implements Command {
   async run(cliOptions: CliOptions, config: RaguServerConfig): Promise<void> {
-    config.compiler.watchMode = true;
-
     const compiler = new ComponentsCompiler(config);
-    const server = new RaguServer(config, compiler);
 
-    await compiler.compileAll();
+    const server = new RaguServer(config, compiler);
     await server.start();
   }
 }

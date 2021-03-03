@@ -4,6 +4,7 @@ import {Application} from "./src/application";
 import {CliInput} from "./src/options/cli-options";
 import {DevServer} from "./src/commands/dev-server";
 import {BuildStatic} from "./src/commands/build-static";
+import {Server} from "./src/commands/server";
 
 const packageJson = require('./package.json');
 
@@ -47,7 +48,7 @@ const commands = [
   {
     name: 'serve',
     description: "Production server. You must the same options given for build command.",
-    command: BuildStatic
+    command: Server
   }
 ]
 
