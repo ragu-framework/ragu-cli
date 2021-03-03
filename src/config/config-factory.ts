@@ -32,7 +32,7 @@ export class ConfigFactory {
         logging: {
           level: options.logLevel
         },
-        ...ConfigFactory.getPort(options)
+        ...ConfigFactory.partialObjectFor('port', options.port)
       },
       ssrEnabled: options.ssrEnabled,
       ...ConfigFactory.outputConfigFor(options),
@@ -47,13 +47,13 @@ export class ConfigFactory {
     return factory.createDirectoryConfig(overrides);
   }
 
-  private static getPort(options: CliOptions) {
-    if (!options.port) {
-      return;
+  private static partialObjectFor<T>(key: string, value?: T): Record<string, T> {
+    if (!value) {
+      return {};
     }
 
     return {
-      port: options.port
+      [key]: value
     };
   }
 

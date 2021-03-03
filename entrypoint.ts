@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import {Command} from 'commander';
 import {Application} from "./src/application";
-import {CliInput} from "./src/options/cli-options";
+import {availableOptions, CliInput} from "./src/options/cli-options";
 import {DevServer} from "./src/commands/dev-server";
 import {BuildStatic} from "./src/commands/build-static";
 import {Server} from "./src/commands/server";
@@ -15,18 +15,17 @@ program
     .version(packageJson.version);
 
 const defaultOptions = (program: Command | any): Command => {
+  for (const option of Object.keys(availableOptions) as (keyof CliInput)[]) {
+    const optionDescription = availableOptions[option];
+
+    if (optionDescription.boolean) {
+      program = program.option(`--${option}`, optionDescription.description)
+    } else {
+      program = program.option(`--${option} <${option}>`, optionDescription.description)
+    }
+  }
+
   return program
-      .option('--ssrEnabled', 'Enables SSR')
-      .option('--file <file>', 'Your component file')
-      .option('--stateFile <stateFile>', 'Your component file')
-      .option('--dependencies <dependencies>', 'Project external dependencies')
-      .option('--directory <directory>', 'The directory for multiple components server')
-      .option('--log <log>', 'The application log level: debug, info, warn, error')
-      .option('--adapter <adapter>', 'The adapter for your component: react, vue, custom')
-      .option('--baseurl <baseurl>', 'Your component baseurl where you component will be deployed')
-      .option('--configFile <configFile>', 'A custom config file')
-      .option('--port <port>', 'The server port')
-      .option('--outputPath <outputPath>', 'Where your component will be built. Default: .ragu-components')
 }
 
 const commands = [

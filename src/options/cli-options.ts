@@ -50,6 +50,11 @@ export interface CliInput {
   outputPath?: string
 }
 
+interface InputOptionCli {
+  boolean?: boolean;
+  description: string
+}
+
 export class NoComponentResolveSpecifiedError extends Error {
   constructor() {
     super("You must specify a file or a directory");
@@ -197,5 +202,42 @@ export class CliOptionsParser {
     }
 
     throw new NoComponentResolveSpecifiedError();
+  }
+}
+
+export const availableOptions: Record<keyof CliInput, InputOptionCli> = {
+  ssrEnabled: {
+    boolean: true,
+    description: "Enables SSR"
+  },
+  file: {
+    description: 'Your component file'
+  },
+  stateFile: {
+    description: 'Your component file'
+  },
+  dependencies: {
+    description: 'Project external dependencies'
+  },
+  directory: {
+    description: 'The directory for multiple components server'
+  },
+  log: {
+    description: 'The application log level: debug, info, warn, error'
+  },
+  adapter: {
+    description: 'The adapter for your component: react, vue, custom'
+  },
+  baseurl: {
+    description: 'Your component baseurl where you component will be deployed'
+  },
+  configFile: {
+    description: 'A custom config file'
+  },
+  port: {
+    description: 'The server port'
+  },
+  outputPath: {
+    description: 'Where your component will be built. Default: .ragu-components'
   }
 }
