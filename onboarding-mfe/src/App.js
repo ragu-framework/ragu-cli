@@ -20,8 +20,8 @@ const App = ()  => {
     >
       <Codeblock>
         <strong className="accent">$ </strong>
-        <span className="secondary">npx ragu-cli run </span>
-        <span className="third">./my-component-name.js</span><br /><br />
+        <span className="secondary">npx ragu-cli dev </span>
+        <span className="third">--file ./my-component-name.js</span><br /><br />
 
         <strong>Welcome to 🔪 RaguServer</strong><br />
         The application is running at <span className="link">http://localhost:3100</span>
