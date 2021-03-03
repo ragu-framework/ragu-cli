@@ -27,11 +27,12 @@ export class ConfigFactory {
   public createConfig(options: CliOptions): RaguServerConfig {
     const factory = this.getConfigFactory(options);
 
-    const overrides = {
+    const overrides: RaguServerBaseConfigProps = {
       server: {
         logging: {
           level: options.logLevel
-        }
+        },
+        port: options.port
       },
       ssrEnabled: options.ssrEnabled,
       ...ConfigFactory.outputConfigFor(options),

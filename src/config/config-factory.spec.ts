@@ -68,6 +68,29 @@ describe('ConfigFactory', () => {
     })
   });
 
+  it('uses a given port', () => {
+    configFactory.createConfig({
+      resolve: {
+        kind: ResolverKind.directory,
+        path: 'path'
+      },
+      adapter: AvailableAdapters.react,
+      logLevel: LogLevel.info,
+      ssrEnabled: false,
+      port: 4200
+    });
+
+    expect(reactConfigFactory.createDirectoryConfig).toBeCalledWith({
+      server: {
+        logging: {
+          level: LogLevel.info
+        },
+        port: 4200
+      },
+      ssrEnabled: false
+    })
+  });
+
   it('returns a vue config when adapter is react', () => {
     configFactory.createConfig({
       resolve: {
