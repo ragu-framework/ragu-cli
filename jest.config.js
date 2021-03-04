@@ -3,6 +3,7 @@ module.exports = {
   testEnvironment: 'node',
   setupFilesAfterEnv: ['<rootDir>jest.setup-after-env.js'],
   testPathIgnorePatterns: [
-    '<rootDir>/onboarding-mfe'
+    '<rootDir>/onboarding-mfe',
+    '<rootDir>/dist'
   ]
 };

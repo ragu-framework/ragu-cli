@@ -180,6 +180,20 @@ describe('CliOptionsParser', () => {
           .toEqual(path.join(process.cwd(), 'deps.json'));
     });
 
+    it('maps webpack', () => {
+      expect(parser.parseInput({...basicConfig}).webpack).toBeUndefined();
+      expect(parser.parseInput({...basicConfig, webpack: '/webpack.js'}).webpack).toEqual('/webpack.js');
+      expect(parser.parseInput({...basicConfig, webpack: 'webpack.js'}).webpack)
+          .toEqual(path.join(process.cwd(), 'webpack.js'));
+    });
+
+    it('maps webpack server side', () => {
+      expect(parser.parseInput({...basicConfig}).webpackServerSide).toBeUndefined();
+      expect(parser.parseInput({...basicConfig, webpackServerSide: '/webpackServerSide.js'}).webpackServerSide).toEqual('/webpackServerSide.js');
+      expect(parser.parseInput({...basicConfig, webpackServerSide: 'webpackServerSide.js'}).webpackServerSide)
+          .toEqual(path.join(process.cwd(), 'webpackServerSide.js'));
+    });
+
     it('maps outputPath', () => {
       expect(parser.parseInput({...basicConfig}).outputPath).toBeUndefined();
       expect(parser.parseInput({...basicConfig, outputPath: '/out'}).outputPath).toEqual('/out');

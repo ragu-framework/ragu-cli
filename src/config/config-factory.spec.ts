@@ -1,13 +1,14 @@
 import {container} from "tsyringe";
-import {ConfigFactory, DependenciesFileNotFoundError} from "./config-factory";
+import {ConfigFactory, DependenciesFileNotFoundError, WebpackConfigNotFoundError} from "./config-factory";
 import {ResolverKind} from "../options/cli-options";
 import {AvailableAdapters} from "../adapters/available-adapters";
-import {ConsoleLogger, LogLevel} from "ragu-server";
+import {ConsoleLogger, LogLevel, RaguServerBaseConfigProps} from "ragu-server";
 import {ReactConfigFactory} from "./factories/react-config-factory";
 import {VueConfigFactory} from "./factories/vue-config-factory";
 import {CustomConfigAbstractFactory, CustomConfigFactory} from "./factories/custom-config-factory";
 import {DetectInstallation} from "../adapters/detect-installation";
 import * as path from "path";
+import Mock = jest.Mock;
 
 describe('ConfigFactory', () => {
   let configFactory: ConfigFactory;
@@ -135,7 +136,7 @@ describe('ConfigFactory', () => {
     );
   });
 
-  it('when baseurl is defined', () => {
+  it('sets baseurl when it is defined', () => {
     configFactory.createConfig({
       resolve: {
         kind: ResolverKind.directory,
@@ -152,6 +153,98 @@ describe('ConfigFactory', () => {
           baseurl: 'http://ragu-is-cool/'
         })
     );
+  });
+
+  describe('providing webpack', () => {
+    it('sets webpack when it is defined', () => {
+      configFactory.createConfig({
+        resolve: {
+          kind: ResolverKind.directory,
+          path: 'path'
+        },
+        adapter: AvailableAdapters.react,
+        webpack: path.join(__dirname, '_testing', 'config-file.js'),
+        logLevel: LogLevel.info,
+        ssrEnabled: false
+      });
+
+      const expected: RaguServerBaseConfigProps = {
+        compiler: {
+          webpack: {
+            clientSide: {
+              customConfig: true,
+            } as any
+          }
+        }
+      };
+      expect(reactConfigFactory.createDirectoryConfig).toBeCalledWith(
+          expect.objectContaining(expected)
+      );
+    });
+
+    it('throws an exception when webpack not found', () => {
+      jest.spyOn(console, 'log').mockImplementation(() => {});
+      const webpackNotFound = path.join(__dirname, '_testing', 'webpack-not-found.js');
+
+      expect(() => configFactory.createConfig({
+        resolve: {
+          kind: ResolverKind.directory,
+          path: 'path'
+        },
+        adapter: AvailableAdapters.react,
+        webpack: webpackNotFound,
+        logLevel: LogLevel.info,
+        ssrEnabled: false
+      })).toThrow(new WebpackConfigNotFoundError(webpackNotFound));
+
+      const debug: Mock = console.log as Mock;
+      expect(debug).not.toBeCalled();
+    });
+
+    it('logs error when debug mode', () => {
+      jest.spyOn(console, 'log').mockImplementation(() => {});
+      const webpackNotFound = path.join(__dirname, '_testing', 'webpack-not-found.js');
+
+      expect(() => configFactory.createConfig({
+        resolve: {
+          kind: ResolverKind.directory,
+          path: 'path'
+        },
+        adapter: AvailableAdapters.react,
+        webpack: webpackNotFound,
+        logLevel: LogLevel.debug,
+        ssrEnabled: false
+      })).toThrow(new WebpackConfigNotFoundError(webpackNotFound));
+
+      const debug: Mock = console.log as Mock;
+      expect(debug.mock.calls[0][0].message).toEqual(expect.stringContaining("Cannot find module"));
+    });
+
+    it('sets webpack server side when it is defined', () => {
+      configFactory.createConfig({
+        resolve: {
+          kind: ResolverKind.directory,
+          path: 'path'
+        },
+        adapter: AvailableAdapters.react,
+        webpackServerSide: path.join(__dirname, '_testing', 'config-file.js'),
+        logLevel: LogLevel.debug,
+        ssrEnabled: false
+      });
+
+      const expected: RaguServerBaseConfigProps = {
+        compiler: {
+          webpack: {
+            serverSide: {
+              customConfig: true,
+            } as any
+          }
+        }
+      };
+      expect(reactConfigFactory.createDirectoryConfig).toBeCalledWith(
+          expect.objectContaining(expected)
+      );
+    });
   });
 
   describe('when mapping dependencies', () => {

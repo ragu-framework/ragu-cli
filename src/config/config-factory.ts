@@ -1,6 +1,6 @@
 import {injectable} from "tsyringe";
 import {CliOptions, ResolverKind} from "../options/cli-options";
-import {RaguServerBaseConfigProps, RaguServerConfig} from "ragu-server";
+import {ConsoleLogger, LogLevel, RaguServerBaseConfigProps, RaguServerConfig} from "ragu-server";
 import {ReactConfigFactory} from "./factories/react-config-factory";
 import {AdapterConfigFactory} from "./adapter-config-factory";
 import {AvailableAdapters} from "../adapters/available-adapters";
@@ -16,12 +16,19 @@ export class DependenciesFileNotFoundError extends Error {
 }
 
 
+export class WebpackConfigNotFoundError extends Error {
+  constructor(filename: string) {
+    super(`Could not open the ${filename} webpack config config`);
+  }
+}
+
 @injectable()
 export class ConfigFactory {
   constructor(private readonly reactConfigFactory: ReactConfigFactory,
               private readonly vueConfigFactory: VueConfigFactory,
               private readonly customConfigAbstractFactory: CustomConfigAbstractFactory,
-              private readonly detectInstallation: DetectInstallation) {
+              private readonly detectInstallation: DetectInstallation,
+              private readonly consoleLogger: ConsoleLogger) {
   }
 
   public createConfig(options: CliOptions): RaguServerConfig {
@@ -35,7 +42,7 @@ export class ConfigFactory {
         ...ConfigFactory.partialObjectFor('port', options.port)
       },
       ssrEnabled: options.ssrEnabled,
-      ...ConfigFactory.outputConfigFor(options),
+      ...this.compilerConfigFor(options),
       ...ConfigFactory.baseUrlFor(options),
       ...this.dependenciesFor(options)
     };
@@ -69,16 +76,32 @@ export class ConfigFactory {
     return this.vueConfigFactory;
   }
 
-  private static outputConfigFor(options: CliOptions): RaguServerBaseConfigProps {
+  private compilerConfigFor(options: CliOptions): RaguServerBaseConfigProps {
+    const compilerOptions = {
+      ...ConfigFactory.outputConfigFor(options),
+      ...this.webpackFor(options)
+    }
+
+    if (Object.keys(compilerOptions).length === 0) {
+      return {}
+    }
+
+    return {
+      compiler: {
+        ...compilerOptions
+      }
+    }
+  }
+
+  private static outputConfigFor(options: CliOptions) {
     if (options.outputPath) {
       return {
-        compiler: {
-          output: {
-            directory: options.outputPath
-          }
+        output: {
+          directory: options.outputPath
         }
       }
     }
+
     return {};
   }
 
@@ -105,6 +128,36 @@ export class ConfigFactory {
       components: {
         defaultDependencies: require(options.dependencies)
       }
+    }
+  }
+
+  private webpackFor(options: CliOptions) {
+    if (!options.webpack && !options.webpackServerSide) {
+      return {};
+    }
+
+    return {
+      webpack: {
+        ...this.getWebpackConfig(options.webpack, 'clientSide', options),
+        ...this.getWebpackConfig(options.webpackServerSide, 'serverSide', options),
+      }
+    }
+  }
+
+  private getWebpackConfig(filename: string | undefined, key: string, options: CliOptions) {
+    if (!filename) {
+      return;
+    }
+
+    try {
+      return {
+        [key]: require(filename)
+      };
+    } catch (e) {
+      if (options.logLevel === LogLevel.debug) {
+        console.log(e);
+      }
+      throw new WebpackConfigNotFoundError(filename);
     }
   }
 }

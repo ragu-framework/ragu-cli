@@ -30,6 +30,8 @@ export type ResolutionMode = AutoResolveOption | CustomConfigOption;
 export type CliOptions = ResolutionMode & {
   ssrEnabled: boolean;
   logLevel: LogLevel;
+  webpack?: string;
+  webpackServerSide?: string;
   baseurl?: string;
   port?: number;
   outputPath?: string;
@@ -43,6 +45,8 @@ export interface CliInput {
   dependencies?: string;
   directory?: string;
   log?: string;
+  webpack?: string;
+  webpackServerSide?: string;
   adapter?: string;
   baseurl?: string;
   configFile?: string;
@@ -91,6 +95,8 @@ export class CliOptionsParser {
       baseurl: input.baseurl,
       dependencies: CliOptionsParser.parseUserProvidedPath(input.dependencies),
       outputPath: CliOptionsParser.parseUserProvidedPath(input.outputPath),
+      webpack: CliOptionsParser.parseUserProvidedPath(input.webpack),
+      webpackServerSide: CliOptionsParser.parseUserProvidedPath(input.webpackServerSide),
       port: CliOptionsParser.parsePort(input),
       ssrEnabled: CliOptionsParser.parseSsrEnabled(input),
       logLevel: CliOptionsParser.parseLogLevel(input),
@@ -208,7 +214,7 @@ export class CliOptionsParser {
 export const availableOptions: Record<keyof CliInput, InputOptionCli> = {
   ssrEnabled: {
     boolean: true,
-    description: "Enables SSR"
+    description: 'Enables SSR'
   },
   file: {
     description: 'Your component file'
@@ -239,5 +245,11 @@ export const availableOptions: Record<keyof CliInput, InputOptionCli> = {
   },
   outputPath: {
     description: 'Where your component will be built. Default: .ragu-components'
+  },
+  webpack: {
+    description: 'A custom webpack config'
+  },
+  webpackServerSide: {
+    description: 'A custom webpack config for SSR'
   }
 }
