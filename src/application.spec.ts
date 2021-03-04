@@ -50,6 +50,26 @@ describe('Application', () => {
   });
 
   describe('detecting the framework', () => {
+    it('uses the given adapter', async () => {
+      const stub = jest.fn();
+
+      container.registerInstance(StubCommand, new StubCommand((options) => {
+        return stub(options);
+      }));
+
+      container.registerInstance(AdapterDetector, {
+        detectAdaptor(): AvailableAdapters | null {
+          return AvailableAdapters.vue
+        }
+      } as AdapterDetector);
+
+      await Application.init({file: 'my-file.js', log: 'error', adapter: 'react'}).execute(StubCommand);
+
+      expect(stub).toBeCalledWith(expect.objectContaining({
+        adapter: AvailableAdapters.react
+      }));
+    });
+
     it('runs the command with the detected adapter', async () => {
       const stub = jest.fn();
 

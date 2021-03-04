@@ -32,7 +32,7 @@ export class Application {
   private getOptions() {
     const options = this.options;
 
-    if (!options.adapter || options.adapter !== AvailableAdapters.custom) {
+    if (!options.adapter) {
       return {
         ...options,
         adapter: this.adapterDetector.detectAdaptor()

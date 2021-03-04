@@ -56,6 +56,17 @@ describe('AdapterDetector', () => {
     });
   });
 
+  describe('when using simple adapter', () => {
+    it('returns simple given vue and ragu-vue-server-adapter is installed', () => {
+      const logger = container.resolve(ConsoleLogger);
+      container.registerInstance(DetectInstallation, new DetectInstallationStub(['ragu-simple-adapter/config']));
+      const adaptorDetector = container.resolve(AdapterDetector);
+
+      expect(adaptorDetector.detectAdaptor()).toEqual(AvailableAdapters.simple);
+      expect(logger.info).toBeCalledWith('Framework detected! You are using "simple".');
+    });
+  });
+
   describe('when using nothing', () => {
     it('throws an error', () => {
       container.registerInstance(DetectInstallation, new DetectInstallationStub([]));

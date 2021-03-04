@@ -7,6 +7,7 @@ import {AvailableAdapters} from "../adapters/available-adapters";
 import {VueConfigFactory} from "./factories/vue-config-factory";
 import {CustomConfigAbstractFactory} from "./factories/custom-config-factory";
 import {DetectInstallation} from "../adapters/detect-installation";
+import {SimpleConfigFactory} from "./factories/simple-config-factory";
 
 
 export class DependenciesFileNotFoundError extends Error {
@@ -26,6 +27,7 @@ export class WebpackConfigNotFoundError extends Error {
 export class ConfigFactory {
   constructor(private readonly reactConfigFactory: ReactConfigFactory,
               private readonly vueConfigFactory: VueConfigFactory,
+              private readonly simpleConfigFactory: SimpleConfigFactory,
               private readonly customConfigAbstractFactory: CustomConfigAbstractFactory,
               private readonly detectInstallation: DetectInstallation,
               private readonly consoleLogger: ConsoleLogger) {
@@ -71,6 +73,10 @@ export class ConfigFactory {
 
     if (options.adapter === AvailableAdapters.react) {
       return this.reactConfigFactory;
+    }
+
+    if (options.adapter === AvailableAdapters.simple) {
+      return this.simpleConfigFactory;
     }
 
     return this.vueConfigFactory;

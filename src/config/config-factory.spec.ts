@@ -9,11 +9,13 @@ import {CustomConfigAbstractFactory, CustomConfigFactory} from "./factories/cust
 import {DetectInstallation} from "../adapters/detect-installation";
 import * as path from "path";
 import Mock = jest.Mock;
+import {SimpleConfigFactory} from "./factories/simple-config-factory";
 
 describe('ConfigFactory', () => {
   let configFactory: ConfigFactory;
   let reactConfigFactory: ReactConfigFactory;
   let vueConfigFactory: VueConfigFactory;
+  let simpleConfigFactory: SimpleConfigFactory;
   let customConfigFactory: CustomConfigFactory;
   let customConfigAbstractFactory: CustomConfigAbstractFactory;
 
@@ -25,6 +27,10 @@ describe('ConfigFactory', () => {
     vueConfigFactory = new VueConfigFactory();
     vueConfigFactory.createDirectoryConfig = jest.fn();
     vueConfigFactory.createSingleComponentConfig = jest.fn();
+
+    simpleConfigFactory = new SimpleConfigFactory();
+    simpleConfigFactory.createDirectoryConfig = jest.fn();
+    simpleConfigFactory.createSingleComponentConfig = jest.fn();
 
     customConfigFactory = new CustomConfigFactory(
         'my-file-name.js',
@@ -43,6 +49,7 @@ describe('ConfigFactory', () => {
 
     container.registerInstance(ReactConfigFactory, reactConfigFactory);
     container.registerInstance(VueConfigFactory, vueConfigFactory);
+    container.registerInstance(SimpleConfigFactory, simpleConfigFactory);
     container.registerInstance(CustomConfigAbstractFactory, customConfigAbstractFactory);
 
     configFactory = container.resolve(ConfigFactory);
@@ -104,6 +111,27 @@ describe('ConfigFactory', () => {
     });
 
     expect(vueConfigFactory.createDirectoryConfig).toBeCalledWith({
+      server: {
+        logging: {
+          level: LogLevel.info
+        }
+      },
+      ssrEnabled: false
+    })
+  });
+
+  it('returns a simple config when adapter is react', () => {
+    configFactory.createConfig({
+      resolve: {
+        kind: ResolverKind.directory,
+        path: 'path'
+      },
+      adapter: AvailableAdapters.simple,
+      logLevel: LogLevel.info,
+      ssrEnabled: false
+    });
+
+    expect(simpleConfigFactory.createDirectoryConfig).toBeCalledWith({
       server: {
         logging: {
           level: LogLevel.info

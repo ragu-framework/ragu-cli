@@ -153,11 +153,14 @@ export class CliOptionsParser {
       return;
     }
 
-    return CliOptionsParser.translateMapToValue('adapter', input.adapter, {
+    const adaptersName: Record<AvailableAdapters, AvailableAdapters> = {
       react: AvailableAdapters.react,
       vue: AvailableAdapters.vue,
       custom: AvailableAdapters.custom,
-    });
+      simple: AvailableAdapters.simple
+    };
+
+    return CliOptionsParser.translateMapToValue('adapter', input.adapter, adaptersName);
   }
 
   private static parseLogLevel(input: CliInput) {
