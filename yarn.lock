@@ -9686,10 +9686,10 @@ ragu-server@^0.0.59:
     webpack-node-externals "^2.5.2"
     yargs "^16.0.3"
 
-ragu-server@^0.0.60:
-  version "0.0.60"
-  resolved "https://registry.yarnpkg.com/ragu-server/-/ragu-server-0.0.60.tgz#eccae101504b494b7515139eb6e98e3ed8426193"
-  integrity sha512-eUA7NprBN2lcIJWCccW9XgGrhe1dE5gdUHSecc75PB0zQmD955A8E1tabHEBVmvWfglHxRGHgUeRG6KS5eoz0Q==
+ragu-server@^0.0.61:
+  version "0.0.61"
+  resolved "https://registry.yarnpkg.com/ragu-server/-/ragu-server-0.0.61.tgz#a44f51611cd621fc3a332b99f866bd52ab1aac2f"
+  integrity sha512-aP4F4eCNiPDWKPlWaUHj/d7KZ/xSNwyEYPxKTe6tVyUjZm8UKpWgQssz7NO1tlVIDEjXAtoAwZHcpuwzWyqUTw==
   dependencies:
     "@types/webpack-node-externals" "^2.5.0"
     abort-controller "^3.0.0"
