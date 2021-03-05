@@ -1511,7 +1511,7 @@
 
 "@types/webpack-livereload-plugin@^2.3.0":
   version "2.3.0"
-  resolved "http://0.0.0.0:4873/@types%2fwebpack-livereload-plugin/-/webpack-livereload-plugin-2.3.0.tgz#a6243dc245647512473ed105fa320fc4fe84aa56"
+  resolved "https://registry.yarnpkg.com/@types/webpack-livereload-plugin/-/webpack-livereload-plugin-2.3.0.tgz#a6243dc245647512473ed105fa320fc4fe84aa56"
   integrity sha512-HuPdMsVKktJdsvZvNS9lM7AbnT4JcuPQEAyTsvEtrFStzEAnjWJ0nxfLR9rG78Upg/K30J1J2ppX76nFdby6dQ==
   dependencies:
     "@types/webpack" "*"
@@ -2709,7 +2709,7 @@ body-parser@1.19.0:
 
 body@^5.1.0:
   version "5.1.0"
-  resolved "http://0.0.0.0:4873/body/-/body-5.1.0.tgz#e4ba0ce410a46936323367609ecb4e6553125069"
+  resolved "https://registry.yarnpkg.com/body/-/body-5.1.0.tgz#e4ba0ce410a46936323367609ecb4e6553125069"
   integrity sha1-5LoM5BCkaTYyM2dgnstOZVMSUGk=
   dependencies:
     continuable-cache "^0.3.1"
@@ -2897,7 +2897,7 @@ builtin-status-codes@^3.0.0:
 
 bytes@1:
   version "1.0.0"
-  resolved "http://0.0.0.0:4873/bytes/-/bytes-1.0.0.tgz#3569ede8ba34315fab99c3e92cb04c7220de1fa8"
+  resolved "https://registry.yarnpkg.com/bytes/-/bytes-1.0.0.tgz#3569ede8ba34315fab99c3e92cb04c7220de1fa8"
   integrity sha1-NWnt6Lo0MV+rmcPpLLBMciDeH6g=
 
 bytes@3.0.0:
@@ -3369,9 +3369,9 @@ color-name@^1.0.0, color-name@~1.1.4:
   integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
 
 color-string@^1.5.4:
-  version "1.5.4"
-  resolved "https://registry.yarnpkg.com/color-string/-/color-string-1.5.4.tgz#dd51cd25cfee953d138fe4002372cc3d0e504cb6"
-  integrity sha512-57yF5yt8Xa3czSEW1jfQDE79Idk0+AkN/4KWad6tbdxUmAs3MvjxlWSWD4deYytcRfoZ9nhKyFl1kj5tBvidbw==
+  version "1.5.5"
+  resolved "https://registry.yarnpkg.com/color-string/-/color-string-1.5.5.tgz#65474a8f0e7439625f3d27a6a19d89fc45223014"
+  integrity sha512-jgIoum0OfQfq9Whcfc2z/VhCNcmQjWbey6qBX0vqt7YICflUmBCh9E9CiQD5GSJ+Uehixm3NUwHVhqUAWRivZg==
   dependencies:
     color-name "^1.0.0"
     simple-swizzle "^0.2.2"
@@ -3515,7 +3515,7 @@ content-type@~1.0.4:
 
 continuable-cache@^0.3.1:
   version "0.3.1"
-  resolved "http://0.0.0.0:4873/continuable-cache/-/continuable-cache-0.3.1.tgz#bd727a7faed77e71ff3985ac93351a912733ad0f"
+  resolved "https://registry.yarnpkg.com/continuable-cache/-/continuable-cache-0.3.1.tgz#bd727a7faed77e71ff3985ac93351a912733ad0f"
   integrity sha1-vXJ6f67XfnH/OYWskzUakSczrQ8=
 
 convert-source-map@^1.4.0, convert-source-map@^1.6.0, convert-source-map@^1.7.0:
@@ -4380,7 +4380,7 @@ error-stack-parser@^2.0.2:
 
 error@^7.0.0:
   version "7.2.1"
-  resolved "http://0.0.0.0:4873/error/-/error-7.2.1.tgz#eab21a4689b5f684fc83da84a0e390de82d94894"
+  resolved "https://registry.yarnpkg.com/error/-/error-7.2.1.tgz#eab21a4689b5f684fc83da84a0e390de82d94894"
   integrity sha512-fo9HBvWnx3NGUKMvMwB/CBCMMrfEJgbDTVDEkPygA3Bdd3lM1OyCd+rbQ8BwnpF6GdVeOLDNmyL4N5Bg80ZvdA==
   dependencies:
     string-template "~0.2.1"
@@ -4879,7 +4879,7 @@ faye-websocket@^0.11.3:
 
 faye-websocket@~0.10.0:
   version "0.10.0"
-  resolved "http://0.0.0.0:4873/faye-websocket/-/faye-websocket-0.10.0.tgz#4e492f8d04dfb6f89003507f6edbf2d501e7c6f4"
+  resolved "https://registry.yarnpkg.com/faye-websocket/-/faye-websocket-0.10.0.tgz#4e492f8d04dfb6f89003507f6edbf2d501e7c6f4"
   integrity sha1-TkkvjQTftviQA1B/btvy1QHnxvQ=
   dependencies:
     websocket-driver ">=0.5.1"
@@ -6911,7 +6911,7 @@ lines-and-columns@^1.1.6:
 
 livereload-js@^2.3.0:
   version "2.4.0"
-  resolved "http://0.0.0.0:4873/livereload-js/-/livereload-js-2.4.0.tgz#447c31cf1ea9ab52fc20db615c5ddf678f78009c"
+  resolved "https://registry.yarnpkg.com/livereload-js/-/livereload-js-2.4.0.tgz#447c31cf1ea9ab52fc20db615c5ddf678f78009c"
   integrity sha512-XPQH8Z2GDP/Hwz2PCDrh2mth4yFejwA1OZ/81Ti3LgKyhDcEjsSsqFWZojHG0va/duGd+WyosY7eXLDoOyqcPw==
 
 load-json-file@^1.0.0:
@@ -8811,7 +8811,7 @@ qs@6.7.0:
 
 qs@^6.4.0:
   version "6.9.6"
-  resolved "http://0.0.0.0:4873/qs/-/qs-6.9.6.tgz#26ed3c8243a431b2924aca84cc90471f35d5a0ee"
+  resolved "https://registry.yarnpkg.com/qs/-/qs-6.9.6.tgz#26ed3c8243a431b2924aca84cc90471f35d5a0ee"
   integrity sha512-TIRk4aqYLNoJUbd+g2lEdz5kLWIuTMRagAXxl78Q0RiVjAOugHmeKNGdd3cwo/ktpf9aL9epCfFqWDEKysUlLQ==
 
 qs@~6.5.2:
@@ -9022,7 +9022,7 @@ raw-body@2.4.0:
 
 raw-body@~1.1.0:
   version "1.1.7"
-  resolved "http://0.0.0.0:4873/raw-body/-/raw-body-1.1.7.tgz#1d027c2bfa116acc6623bca8f00016572a87d425"
+  resolved "https://registry.yarnpkg.com/raw-body/-/raw-body-1.1.7.tgz#1d027c2bfa116acc6623bca8f00016572a87d425"
   integrity sha1-HQJ8K/oRasxmI7yo8AAWVyqH1CU=
   dependencies:
     bytes "1"
@@ -9456,7 +9456,7 @@ safe-buffer@>=5.1.0, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1,
 
 safe-json-parse@~1.0.1:
   version "1.0.1"
-  resolved "http://0.0.0.0:4873/safe-json-parse/-/safe-json-parse-1.0.1.tgz#3e76723e38dfdda13c9b1d29a1e07ffee4b30b57"
+  resolved "https://registry.yarnpkg.com/safe-json-parse/-/safe-json-parse-1.0.1.tgz#3e76723e38dfdda13c9b1d29a1e07ffee4b30b57"
   integrity sha1-PnZyPjjf3aE8mx0poeB//uSzC1c=
 
 safe-regex@^1.1.0:
@@ -10084,7 +10084,7 @@ string-length@^4.0.1:
 
 string-template@~0.2.1:
   version "0.2.1"
-  resolved "http://0.0.0.0:4873/string-template/-/string-template-0.2.1.tgz#42932e598a352d01fc22ec3367d9d84eec6c9add"
+  resolved "https://registry.yarnpkg.com/string-template/-/string-template-0.2.1.tgz#42932e598a352d01fc22ec3367d9d84eec6c9add"
   integrity sha1-QpMuWYo1LQH8IuwzZ9nYTuxsmt0=
 
 string-width@^1.0.1:
@@ -10140,7 +10140,7 @@ string.prototype.trimstart@^1.0.4:
 
 string_decoder@0.10:
   version "0.10.31"
-  resolved "http://0.0.0.0:4873/string_decoder/-/string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94"
+  resolved "https://registry.yarnpkg.com/string_decoder/-/string_decoder-0.10.31.tgz#62e203bc41766c6c28c9fc84301dab1c5310fa94"
   integrity sha1-YuIDvEF2bGwoyfyEMB2rHFMQ+pQ=
 
 string_decoder@^1.0.0, string_decoder@^1.1.1:
@@ -10478,7 +10478,7 @@ timsort@^0.3.0:
 
 tiny-lr@^1.1.1:
   version "1.1.1"
-  resolved "http://0.0.0.0:4873/tiny-lr/-/tiny-lr-1.1.1.tgz#9fa547412f238fedb068ee295af8b682c98b2aab"
+  resolved "https://registry.yarnpkg.com/tiny-lr/-/tiny-lr-1.1.1.tgz#9fa547412f238fedb068ee295af8b682c98b2aab"
   integrity sha512-44yhA3tsaRoMOjQQ+5v5mVdqef+kH6Qze9jTpqtVufgYjYt08zyZAwNwwVBj3i1rJMnR52IxOW0LK0vBzgAkuA==
   dependencies:
     body "^5.1.0"
@@ -11275,7 +11275,7 @@ webpack-hot-middleware@~2.25.0:
 
 webpack-livereload-plugin@^3.0.0:
   version "3.0.0"
-  resolved "http://0.0.0.0:4873/webpack-livereload-plugin/-/webpack-livereload-plugin-3.0.0.tgz#7d827011ebf4cb7884a059b1a65d922c30ebe6b3"
+  resolved "https://registry.yarnpkg.com/webpack-livereload-plugin/-/webpack-livereload-plugin-3.0.0.tgz#7d827011ebf4cb7884a059b1a65d922c30ebe6b3"
   integrity sha512-B4EEpLUkgkj0iHqAbf96mDxeRMWWH/s9lM2shJbKWaE4C5QTplodKCI8J4YdbPfNypFB3cgoO9TfW31ol5YmKA==
   dependencies:
     anymatch "^3.1.1"
