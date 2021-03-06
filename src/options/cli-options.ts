@@ -165,7 +165,7 @@ export class CliOptionsParser {
 
   private static parseLogLevel(input: CliInput) {
     if (!input.log) {
-      return LogLevel.info;
+      return LogLevel.warn;
     }
 
     return CliOptionsParser.translateMapToValue('log', input.log, {

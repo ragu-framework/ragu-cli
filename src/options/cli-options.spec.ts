@@ -31,7 +31,7 @@ describe('CliOptionsParser', () => {
           path: path.join(process.cwd(), 'my-comp.js')
         },
         ssrEnabled: false,
-        logLevel: LogLevel.info
+        logLevel: LogLevel.warn
       });
     });
 
@@ -46,7 +46,7 @@ describe('CliOptionsParser', () => {
             statePath: path.join(process.cwd(), 'my-state.js')
           },
           ssrEnabled: false,
-          logLevel: LogLevel.info
+          logLevel: LogLevel.warn
         });
       });
 
@@ -67,7 +67,7 @@ describe('CliOptionsParser', () => {
           path: '/my-comps'
         },
         ssrEnabled: false,
-        logLevel: LogLevel.info
+        logLevel: LogLevel.warn
       });
     });
 
@@ -82,7 +82,7 @@ describe('CliOptionsParser', () => {
           path: path.join(process.cwd(), 'my-comps')
         },
         ssrEnabled: false,
-        logLevel: LogLevel.info
+        logLevel: LogLevel.warn
       });
     });
 
