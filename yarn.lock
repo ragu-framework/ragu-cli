@@ -8572,10 +8572,10 @@ ragu-react-server-adapter@^0.0.23:
     mini-css-extract-plugin "^1.3.9"
     webpack-merge "^5.7.3"
 
-ragu-server@0.0.71:
-  version "0.0.71"
-  resolved "https://registry.yarnpkg.com/ragu-server/-/ragu-server-0.0.71.tgz#5acc8fe99f0744aebdf7d5281f2308349d496206"
-  integrity sha512-NxzBGLqrghAhEskVK5kVO33Y/RV7uHohKQ0Ww7Rv4skS/7kbK6fweU0Q0hgwpuqzRBmVUr4B31OaVKc93rYAHQ==
+ragu-server@^0.0.72:
+  version "0.0.72"
+  resolved "https://registry.yarnpkg.com/ragu-server/-/ragu-server-0.0.72.tgz#df78212332e45b81c91773b5706b7aa60dc96d4e"
+  integrity sha512-QdyPFW6OYRQz/Edb/TB+mytKaSm5cofT7diRqzmkO1qq3EAgpK4hk43AobWsfEvXedsrMC47hluNoMH2w+8Umw==
   dependencies:
     abort-controller "^3.0.0"
     chalk "^4.1.0"
