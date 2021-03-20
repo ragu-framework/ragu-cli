@@ -194,6 +194,13 @@ describe('CliOptionsParser', () => {
           .toEqual(path.join(process.cwd(), 'webpackServerSide.js'));
     });
 
+    it('maps webpack server side with the value of client side when server side is not giveen', () => {
+      expect(parser.parseInput({...basicConfig}).webpackServerSide).toBeUndefined();
+      expect(parser.parseInput({...basicConfig, webpack: '/webpack.js'}).webpackServerSide).toEqual('/webpack.js');
+      expect(parser.parseInput({...basicConfig, webpack: 'webpack.js'}).webpackServerSide)
+          .toEqual(path.join(process.cwd(), 'webpack.js'));
+    });
+
     it('maps outputPath', () => {
       expect(parser.parseInput({...basicConfig}).outputPath).toBeUndefined();
       expect(parser.parseInput({...basicConfig, outputPath: '/out'}).outputPath).toEqual('/out');

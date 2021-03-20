@@ -90,13 +90,16 @@ export class CliOptionsParser {
   parseInput(input: CliInput): CliOptions {
     const resolutionMode = CliOptionsParser.parseResolutionMode(input);
 
+    const webpack = CliOptionsParser.parseUserProvidedPath(input.webpack);
+    const webpackServerSide = CliOptionsParser.parseUserProvidedPath(input.webpackServerSide);
+
     return {
       configFile: CliOptionsParser.parseUserProvidedPath(input.configFile),
       baseurl: input.baseurl,
       dependencies: CliOptionsParser.parseUserProvidedPath(input.dependencies),
       outputPath: CliOptionsParser.parseUserProvidedPath(input.outputPath),
-      webpack: CliOptionsParser.parseUserProvidedPath(input.webpack),
-      webpackServerSide: CliOptionsParser.parseUserProvidedPath(input.webpackServerSide),
+      webpack,
+      webpackServerSide: webpackServerSide ? webpackServerSide : webpack,
       port: CliOptionsParser.parsePort(input),
       ssrEnabled: CliOptionsParser.parseSsrEnabled(input),
       logLevel: CliOptionsParser.parseLogLevel(input),
@@ -253,6 +256,6 @@ export const availableOptions: Record<keyof CliInput, InputOptionCli> = {
     description: 'A custom webpack config'
   },
   webpackServerSide: {
-    description: 'A custom webpack config for SSR'
+    description: 'A custom webpack config for SSR. Default: It will assume the same value provided for --webpack'
   }
 }
