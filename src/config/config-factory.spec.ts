@@ -72,6 +72,9 @@ describe('ConfigFactory', () => {
           level: LogLevel.info
         }
       },
+      components: {
+        sourceRoot: 'path'
+      },
       ssrEnabled: false
     })
   });
@@ -95,6 +98,9 @@ describe('ConfigFactory', () => {
         },
         port: 4200
       },
+      components: {
+        sourceRoot: 'path'
+      },
       ssrEnabled: false
     })
   });
@@ -116,6 +122,9 @@ describe('ConfigFactory', () => {
           level: LogLevel.info
         }
       },
+      components: {
+        sourceRoot: 'path'
+      },
       ssrEnabled: false
     })
   });
@@ -136,6 +145,9 @@ describe('ConfigFactory', () => {
         logging: {
           level: LogLevel.info
         }
+      },
+      components: {
+        sourceRoot: 'path'
       },
       ssrEnabled: false
     })
@@ -292,6 +304,7 @@ describe('ConfigFactory', () => {
       expect(reactConfigFactory.createDirectoryConfig).toBeCalledWith(
         expect.objectContaining({
           components: {
+            sourceRoot: 'path',
             defaultDependencies: [{
               "dependency": "My Dependency"
             }]

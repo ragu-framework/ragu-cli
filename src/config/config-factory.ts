@@ -46,7 +46,7 @@ export class ConfigFactory {
       ssrEnabled: options.ssrEnabled,
       ...this.compilerConfigFor(options),
       ...ConfigFactory.baseUrlFor(options),
-      ...this.dependenciesFor(options)
+      ...this.componentsFor(options)
     };
 
     if (options.adapter !== AvailableAdapters.custom && options.resolve.kind === ResolverKind.file) {
@@ -121,7 +121,25 @@ export class ConfigFactory {
     return {};
   }
 
-  private dependenciesFor(options: CliOptions): RaguServerBaseConfigProps {
+  private componentsFor(options: CliOptions): RaguServerBaseConfigProps {
+    const defaultDependencies = this.dependenciesFor(options);
+    const sourceRoot = this.sourceRootFor(options);
+
+    const components = {
+      ...defaultDependencies,
+      ...sourceRoot
+    };
+
+    if (Object.keys(components).length === 0) {
+      return {};
+    }
+
+    return {
+      components: components
+    }
+  }
+
+  private dependenciesFor(options: CliOptions) {
     if (!options.dependencies) {
       return {};
     }
@@ -131,9 +149,17 @@ export class ConfigFactory {
     }
 
     return {
-      components: {
-        defaultDependencies: require(options.dependencies)
-      }
+      defaultDependencies: require(options.dependencies)
+    };
+  }
+
+  private sourceRootFor(options: CliOptions) {
+    if (options.adapter === AvailableAdapters.custom || options.resolve.kind !== ResolverKind.directory) {
+      return {}
+    }
+
+    return {
+      sourceRoot: options.resolve.path
     }
   }
 
