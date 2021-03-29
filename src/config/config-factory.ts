@@ -70,7 +70,9 @@ export class ConfigFactory {
   private getConfigFactory(options: CliOptions): AdapterConfigFactory {
     if (options.present) {
       const present = require(`${options.present}/ragu-cli`);
-      return (present.default || present).ConfigFactory;
+      const {ConfigFactory} = (present.default || present);
+
+      return new ConfigFactory;
     }
     
     if (options.adapter === AvailableAdapters.custom) {
