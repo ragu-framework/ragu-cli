@@ -49,6 +49,7 @@ export class ConfigFactory {
       ...this.componentsFor(options)
     };
 
+
     if (options.adapter !== AvailableAdapters.custom && options.resolve.kind === ResolverKind.file) {
       return factory.createSingleComponentConfig(overrides, options.resolve.path, options.resolve.statePath)
     }
@@ -67,6 +68,10 @@ export class ConfigFactory {
   }
 
   private getConfigFactory(options: CliOptions): AdapterConfigFactory {
+    if (options.present) {
+      return require(`${options.present}/ragu-cli`);
+    }
+    
     if (options.adapter === AvailableAdapters.custom) {
       return this.customConfigAbstractFactory.build(options.configFile);
     }

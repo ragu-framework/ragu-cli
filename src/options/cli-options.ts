@@ -36,6 +36,7 @@ export type CliOptions = ResolutionMode & {
   port?: number;
   outputPath?: string;
   dependencies?: string;
+  present?: string;
 }
 
 export interface CliInput {
@@ -48,6 +49,7 @@ export interface CliInput {
   webpack?: string;
   webpackServerSide?: string;
   adapter?: string;
+  present?: string;
   baseurl?: string;
   configFile?: string;
   port?: string;
@@ -99,6 +101,7 @@ export class CliOptionsParser {
       dependencies: CliOptionsParser.parseUserProvidedPath(input.dependencies),
       outputPath: CliOptionsParser.parseUserProvidedPath(input.outputPath),
       webpack,
+      present: input.present,
       webpackServerSide: webpackServerSide ? webpackServerSide : webpack,
       port: CliOptionsParser.parsePort(input),
       ssrEnabled: CliOptionsParser.parseSsrEnabled(input),
@@ -257,5 +260,8 @@ export const availableOptions: Record<keyof CliInput, InputOptionCli> = {
   },
   webpackServerSide: {
     description: 'A custom webpack config for SSR. Default: It will assume the same value provided for --webpack'
+  },
+  present: {
+    description: 'Beta: an alternative to adapters.'
   }
 }
