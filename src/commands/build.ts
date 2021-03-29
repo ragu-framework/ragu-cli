@@ -5,7 +5,11 @@ import {injectable} from "tsyringe";
 
 @injectable()
 export class Build implements Command {
-  async run(cliOptions: CliOptions, config: RaguServerConfig): Promise<void> {
+  async run(cliOptions: CliOptions, config: RaguServerConfig, production = false): Promise<void> {
+    if (production) {
+      config.environment = 'production';
+    }
+
     const compiler = new ComponentsCompiler(config);
     await compiler.compileAll();
   }

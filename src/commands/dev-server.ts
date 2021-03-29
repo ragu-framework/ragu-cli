@@ -13,7 +13,7 @@ export class DevServer implements Command {
   async run(cliOptions: CliOptions, config: RaguServerConfig): Promise<void> {
     config.compiler.watchMode = true;
 
-    await this.build.run(cliOptions, config)
-    await this.server.run(cliOptions, config);
+    await this.build.run(cliOptions, config, false)
+    await this.server.run(cliOptions, config, false);
   }
 }
