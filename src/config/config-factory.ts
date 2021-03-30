@@ -8,6 +8,7 @@ import {VueConfigFactory} from "./factories/vue-config-factory";
 import {CustomConfigAbstractFactory} from "./factories/custom-config-factory";
 import {DetectInstallation} from "../adapters/detect-installation";
 import {SimpleConfigFactory} from "./factories/simple-config-factory";
+import {removeExtension} from "../path_extension";
 
 
 export class DependenciesFileNotFoundError extends Error {
@@ -51,7 +52,11 @@ export class ConfigFactory {
 
 
     if (options.adapter !== AvailableAdapters.custom && options.resolve.kind === ResolverKind.file) {
-      return factory.createSingleComponentConfig(overrides, options.resolve.path, options.resolve.statePath)
+      return factory.createSingleComponentConfig(
+          overrides,
+          removeExtension(options.resolve.path),
+          options.resolve.statePath && removeExtension(options.resolve.statePath)
+      )
     }
 
     return factory.createDirectoryConfig(overrides);
